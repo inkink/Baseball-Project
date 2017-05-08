@@ -102,26 +102,56 @@ void Date::operator=(const Date &date)
 }
 
 /**********************************************************
- * void Date::operator<=(const Date &date)
+ * void Date::operator==(const Date &date)
  * _______________________________________________________
  * Precondition:
  *  -none
  * Postcondition:
- *  -overloads the <= operator for a date
+ *  -overloads the == operator for a date
 **********************************************************/
-bool Date::operator<=(const Date &other) const
+bool Date::operator==(const Date& other) const{
+    if(year==other.year && month==other.month && day==other.day)
+        return true;
+    else
+        return false;
+}
+
+/**********************************************************
+ * void Date::operator!=(const Date &date)
+ * _______________________________________________________
+ * Precondition:
+ *  -none
+ * Postcondition:
+ *  -overloads the != operator for a date
+**********************************************************/
+bool Date::operator!=(const Date& other) const{
+    if(year==other.year && month==other.month && day==other.day)
+        return false;
+    else
+        return true;
+}
+
+/**********************************************************
+ * void Date::operator<(const Date &date)
+ * _______________________________________________________
+ * Precondition:
+ *  -none
+ * Postcondition:
+ *  -overloads the < operator for a date
+**********************************************************/
+bool Date::operator<(const Date &other) const
 {
     if ( year <= other.year){
         if (year < other.year){
             return true;
         }
-        else{
+        else{   //in the same year
             if (month <= other.month){
                 if (month < other.month){
                     return true;
                 }
-                else{
-                    if (day <= other.day){
+                else{  //in the same year and same month
+                    if (day < other.day){
                         return true;
                     }
                     else{
@@ -140,26 +170,26 @@ bool Date::operator<=(const Date &other) const
 }
 
 /**********************************************************
- * void Date::operator>=(const Date &date)
+ * void Date::operator>(const Date &date)
  * _______________________________________________________
  * Precondition:
  *  -none
  * Postcondition:
- *  -overloads the >= operator for a date
+ *  -overloads the > operator for a date
 **********************************************************/
-bool Date::operator>=(const Date &other) const
+bool Date::operator>(const Date &other) const
 {
     if ( year >= other.year){
         if (year > other.year){
             return true;
         }
-        else{
+        else{   //same year
             if (month >= other.month){
                 if (month > other.month){
                     return true;
                 }
-                else{
-                    if (day >= other.day){
+                else{  //same year and same month
+                    if (day > other.day){
                         return true;
                     }
                     else{
@@ -175,6 +205,36 @@ bool Date::operator>=(const Date &other) const
     else{
         return false;
     }
+}
+
+/**********************************************************
+ * void Date::operator<=(const Date &date)
+ * _______________________________________________________
+ * Precondition:
+ *  -none
+ * Postcondition:
+ *  -overloads the <= operator for a date
+**********************************************************/
+bool Date::operator<=(const Date& other) const{
+    if(this->operator >(other))
+        return false;
+    else
+        return true;
+}
+
+/**********************************************************
+ * void Date::operator>=(const Date &date)
+ * _______________________________________________________
+ * Precondition:
+ *  -none
+ * Postcondition:
+ *  -overloads the >= operator for a date
+**********************************************************/
+bool Date::operator>=(const Date& other) const{
+    if(this->operator <(other))
+        return false;
+    else
+        return true;
 }
 
 /**********************************************************
@@ -203,4 +263,7 @@ void Date::setYear(int value)
     year = value;
 }
 
-
+ostream& operator <<(ostream& out, Date d){
+    out<<d.month<<','<<d.day<<','<<d.year;
+    return out;
+}

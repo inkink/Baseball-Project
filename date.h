@@ -1,6 +1,9 @@
 #ifndef DATE_H
 #define DATE_H
 #include "string"
+#include <iostream>
+
+using namespace std;
 
 class Date
 {
@@ -22,7 +25,12 @@ public:
     void operator=(const Date& date);
     bool operator<=(const Date& other) const;
     bool operator>=(const Date& other) const;
+    bool operator<(const Date& other) const;
+    bool operator>(const Date& other) const;
+    bool operator==(const Date& other) const;
+    bool operator!=(const Date& other) const;
 
+    friend ostream& operator <<(ostream& out, Date d);
 private:
     int month;
     int day;
