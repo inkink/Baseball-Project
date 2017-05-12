@@ -1,24 +1,37 @@
 #ifndef STADIUM_H
 #define STADIUM_H
 #include "iostream"
+#include "date.h"
+#include "address.h"
+using namespace std;
 
 class Stadium
 {
 public:
-//    Stadium();
-    Stadium(string team="", string address="", string date="", int cap=0);
+    Stadium();
+    Stadium(string team, Address a, string phone, Date date, int cap);
     string getTeamName();
-    string getAddress();
-    string getOpenDate();
+    Address getAddress();
+    Date getOpenDate();
+    string getPhoneNum();
     int getCapacity();
     void setTeam(string team);
-    void setAddress(string address);
-    void setOpenDate(string date);
+    void setAddress(Address address);
+    void setOpenDate(Date date);
+    void setPhoneNum(string num);
     void setCapacity(int cap);
+    bool operator==(Stadium two);
+    bool operator>(Stadium two);
+    bool operator<(Stadium two);
+    bool operator>=(Stadium two);
+    bool operator<=(Stadium two);
+    friend ostream& operator<<(ostream& out, const Stadium& one);
+
 private:
     string TeamName;
-    string Address;
-    string OpenDate;
+    Address address;
+    Date OpenDate;
+    string PhoneNum;
     int Capacity;
 };
 

@@ -263,7 +263,7 @@ void Date::setYear(int value)
     year = value;
 }
 
-ostream& operator <<(ostream& out, Date d){
+ostream& operator <<(ostream& out, const Date& d){
     out<<d.month<<','<<d.day<<','<<d.year;
     return out;
 }

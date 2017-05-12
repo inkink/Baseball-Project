@@ -1,69 +1,62 @@
 #ifndef BINARYTREE_H
 #define BINARYTREE_H
-
 #include <iostream>
 #include <iomanip>
 
 using namespace std;
 
-template <class ItemType>
+template<class item>
 struct TreeNode
 {
-    ItemType value;
-    TreeNode *left;
-    TreeNode *right;
+    item value;
+    TreeNode<item> *left;
+    TreeNode<item> *right;
 };
 
-template <class ItemType>
-class BinaryTree{
+template<class item>
+class BinaryTree
+{
 public:
-    //Constructor
     BinaryTree(){ root = NULL;}
 
     ~BinaryTree(){destroySubTree(root);}
-
     //Binary Tree Operations
-    void insertNode(ItemType insertMe);
-    TreeNode<ItemType>* searchNode(ItemType searchMe);
-    void remove(ItemType removeMe);
-
-    int leaf_count() const;
-    int non_leaf_count() const;
-    int size() const;
+    void insertNode(item);
+    bool searchNode(item);
+    bool searchNode(int num, item &person);
+    void remove(item);
+    int size() const{return size(root);}
+    item& getRoot();
 
     void displayInOrder() const{ displayInOrder(root);}
     void displayPreOrder() const{ displayPreOrder(root);}
     void displayPostOrder() const{ displayPostOrder(root);}
-
-    TreeNode<ItemType>* getFront();
 private:
-    TreeNode<ItemType>* root;
+    TreeNode<item>* root;
 
-    void insert(TreeNode<ItemType> *&, TreeNode<ItemType> *&);
-    void destroySubTree(TreeNode<ItemType> *);
-    void deleteNode(ItemType, TreeNode<ItemType> *&);
-    void makeDeletion(TreeNode<ItemType> *&);
-    void displayInOrder(TreeNode<ItemType> *) const;
-    void displayPreOrder(TreeNode<ItemType> *) const;
-    void displayPostOrder(TreeNode<ItemType> *) const;
-    int leaf_count(TreeNode<ItemType>* root) const;
-    int non_leaf_count(TreeNode<ItemType>* root) const;
-    int size(TreeNode<ItemType>* root) const;
+    void insert(TreeNode<item> *&, TreeNode<item> *&);
+    void destroySubTree(TreeNode<item> *);
+    void deleteNode(item, TreeNode<item> *&);
+    void makeDeletion(TreeNode<item> *&);
+    void displayInOrder(TreeNode<item> *) const;
+    void displayPreOrder(TreeNode<item> *) const;
+    void displayPostOrder(TreeNode<item> *) const;
+    int size(TreeNode<item> *) const;
 };
 
-template <class ItemType>
-void BinaryTree<ItemType>::insertNode(ItemType insertMe){
-    TreeNode<ItemType> *newNode = new TreeNode<ItemType>;
+template<class item>
+void BinaryTree<item>::insertNode(item num){
+    TreeNode<item> *newNode = new TreeNode<item>;
 
-    newNode->value = insertMe;
+    newNode->value = num;
     newNode->left = newNode->right = NULL;
 
     //Insert the Node
     insert(root, newNode);
 }
 
-template <class ItemType>
-void BinaryTree<ItemType>::insert(TreeNode<ItemType> *&nodePtr, TreeNode<ItemType> *&newNode){
+template<class item>
+void BinaryTree<item>::insert(TreeNode<item> *&nodePtr, TreeNode<item> *&newNode){
     if (nodePtr == NULL)
         nodePtr = newNode;
     else if (newNode->value < nodePtr->value)
@@ -72,8 +65,8 @@ void BinaryTree<ItemType>::insert(TreeNode<ItemType> *&nodePtr, TreeNode<ItemTyp
         insert(nodePtr->right, newNode);
 }
 
-template <class ItemType>
-void BinaryTree<ItemType>::displayInOrder(TreeNode<ItemType> *nodePtr) const{
+template<class item>
+void BinaryTree<item>::displayInOrder(TreeNode<item> *nodePtr) const{
     if(nodePtr){
         displayInOrder(nodePtr->left);
         cout << nodePtr->value << " ";
@@ -81,8 +74,8 @@ void BinaryTree<ItemType>::displayInOrder(TreeNode<ItemType> *nodePtr) const{
     }
 }
 
-template <class ItemType>
-void BinaryTree<ItemType>::displayPreOrder(TreeNode<ItemType> *nodePtr) const{
+template<class item>
+void BinaryTree<item>::displayPreOrder(TreeNode<item> *nodePtr) const{
     if(nodePtr){
         cout << nodePtr->value << " ";
         displayPreOrder(nodePtr->left);
@@ -90,8 +83,8 @@ void BinaryTree<ItemType>::displayPreOrder(TreeNode<ItemType> *nodePtr) const{
     }
 }
 
-template <class ItemType>
-void BinaryTree<ItemType>::displayPostOrder(TreeNode<ItemType> *nodePtr) const{
+template<class item>
+void BinaryTree<item>::displayPostOrder(TreeNode<item> *nodePtr) const{
     if(nodePtr){
         displayPostOrder(nodePtr->left);
         displayPostOrder(nodePtr->right);
@@ -99,45 +92,61 @@ void BinaryTree<ItemType>::displayPostOrder(TreeNode<ItemType> *nodePtr) const{
     }
 }
 
-template <class ItemType>
-void BinaryTree<ItemType>::destroySubTree(TreeNode<ItemType> *nodePtr){
-    while(nodePtr)
-        makeDeletion(nodePtr);
+template<class item>
+void BinaryTree<item>::destroySubTree(TreeNode<item> *nodePtr){
+    cout << "Binary Tree Destroyed\n";
+    delete nodePtr;
 }
 
-template <class ItemType>
-TreeNode<ItemType>* BinaryTree<ItemType>::searchNode(ItemType searchMe){
-    TreeNode<ItemType>* nodePtr = root;
+template<class item>
+bool BinaryTree<item>::searchNode(item num){
+    TreeNode<item>* nodePtr = root;
 
     while(nodePtr){
-        if (nodePtr->value == searchMe)
-            return nodePtr;
-        else if (searchMe < nodePtr->value)
+        if (nodePtr->value == num)
+            return true;
+        else if (num < nodePtr->value)
             nodePtr = nodePtr->left;
         else
             nodePtr = nodePtr->right;
     }
-    return NULL;
+    return false;
 }
 
-template <class ItemType>
-void BinaryTree<ItemType>::remove(ItemType removeMe){
-    deleteNode(removeMe, root);
+template<class item>
+bool BinaryTree<item>::searchNode(int num,item& person){
+    TreeNode<item>* nodePtr = root;
+
+    while(nodePtr){
+        if (nodePtr->value == num){
+            person = nodePtr->value;
+            return true;
+        }else if (num < nodePtr->value)
+            nodePtr = nodePtr->left;
+        else
+            nodePtr = nodePtr->right;
+    }
+    return false;
 }
 
-template <class ItemType>
-void BinaryTree<ItemType>::deleteNode(ItemType deleteMe, TreeNode<ItemType> *&nodePtr){
-    if (deleteMe < nodePtr->value)
-        deleteNode(deleteMe, nodePtr->left);
-    else if (deleteMe > nodePtr->value)
-        deleteNode(deleteMe, nodePtr->right);
+template<class item>
+void BinaryTree<item>::remove(item num){
+    deleteNode(num, root);
+}
+
+template<class item>
+void BinaryTree<item>::deleteNode(item num, TreeNode<item> *&nodePtr){
+    if (num < nodePtr->value)
+        deleteNode(num, nodePtr->left);
+    else if (num > nodePtr->value)
+        deleteNode(num, nodePtr->right);
     else
         makeDeletion(nodePtr);
 }
 
-template <class ItemType>
-void BinaryTree<ItemType>::makeDeletion(TreeNode<ItemType> *&nodePtr){
-    TreeNode<ItemType> *tempNodePtr;
+template<class item>
+void BinaryTree<item>::makeDeletion(TreeNode<item> *&nodePtr){
+    TreeNode<item> *tempNodePtr;
 
     if (nodePtr == NULL)
         cout << "Cannot delete empty node\n";
@@ -170,52 +179,20 @@ void BinaryTree<ItemType>::makeDeletion(TreeNode<ItemType> *&nodePtr){
     }
 }
 
-template <class ItemType>
-int BinaryTree<ItemType>::leaf_count(TreeNode<ItemType>* root) const{
-    if(root==NULL)
-        return 0;
-    else if(root->left==NULL&&root->right==NULL)
-        return 1;
-    else
-        return leaf_count(root->left)+leaf_count(root->right);
-}
+template<class item>
+int BinaryTree<item>::size(TreeNode<item> *node) const
+{
 
-template <class ItemType>
-int BinaryTree<ItemType>::non_leaf_count(TreeNode<ItemType>* root) const {
-    if(root==NULL)
-        return 0;
-    else if(root->left==NULL&&root->right==NULL)
+    if(node == NULL)
         return 0;
     else
-        return 1+non_leaf_count(root->left)+non_leaf_count(root->right);
+        return 1 + size(node->left) + size(node->right);
+
+
 }
 
-template <class ItemType>
-int BinaryTree<ItemType>::size(TreeNode<ItemType>* root) const{
-    if(root==NULL)
-        return 0;
-    else
-        return 1+size(root->left)+size(root->right);
+template<class item>
+item& BinaryTree<item>::getRoot(){
+    return root->value;
 }
-
-template <class ItemType>
-int BinaryTree<ItemType>::leaf_count() const{
-    return leaf_count(root);
-}
-
-template <class ItemType>
-int BinaryTree<ItemType>::non_leaf_count() const{
-    return non_leaf_count(root);
-}
-
-template <class ItemType>
-int BinaryTree<ItemType>::size() const{
-    return size(root);
-}
-
-template <class ItemType>
-TreeNode<ItemType>* BinaryTree<ItemType>::getFront(){
-    return root;
-}
-
-#endif
+#endif // BINARYTREE_H

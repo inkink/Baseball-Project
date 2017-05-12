@@ -30,7 +30,7 @@ public:
     bool operator==(const Date& other) const;
     bool operator!=(const Date& other) const;
 
-    friend ostream& operator <<(ostream& out, Date d);
+    friend ostream& operator <<(ostream& out, const Date& d);
 private:
     int month;
     int day;
