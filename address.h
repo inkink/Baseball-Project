@@ -1,6 +1,8 @@
 #ifndef ADDRESS_H
 #define ADDRESS_H
 #include <string>
+#include "iostream"
+using namespace std;
 
 class Address
 {
@@ -21,6 +23,9 @@ public:
 
     int getZip() const;
     void setZip(int value);
+
+    void operator=(const Address& a);
+    friend ostream& operator <<(ostream& out, const Address& d);
 
 private:
     std::string address;
