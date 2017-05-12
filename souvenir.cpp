@@ -1,26 +1,31 @@
 #include "souvenir.h"
 
-
-Souvenir::Souvenir(){
-    Item = "";
-    Price = 0.0;
-    Quantity = 0;
-}
-
-Souvenir::Souvenir(string name, double cost,int num){
-    Item = name;
-    Price = cost;
-    Quantity = num;
+Souvenir::Souvenir(string Name, double cost,int num){
+    item = Name;
+    price = cost;
+    quantity = num;
 }
 
 string Souvenir::getItem(){
-    return Item;
+    return item;
 }
 
 double Souvenir::getPrice(){
-    return Price;
+    return price;
 }
 
 int Souvenir::getQuantity(){
-    return Quantity;
+    return quantity;
+}
+
+void Souvenir::setItem(string n){
+    item = n;
+}
+
+void Souvenir::setPrice(double p){
+    price = p;
+}
+
+void Souvenir::setQuantity(int n){
+    quantity = n;
 }

@@ -2,17 +2,17 @@
 
 Stadium::Stadium()
 {
-    openDate = Date();
+//    Date temp;
     teamName ="";
     phoneNum = "(000)000-0000";
-    Capacity =0;
+    capacity =0;
 }
 Stadium::Stadium(string team, Address a, string phone, Date date, int cap ){
     teamName =team;
-    address = a;
-    openDate = date;
+    address =a;
+    openDate =date;
     phoneNum = phone;
-    Capacity =cap;
+    capacity =cap;
 }
 
 string Stadium::getTeamName(){
@@ -28,7 +28,7 @@ Date Stadium::getOpenDate(){
 }
 
 int Stadium::getCapacity(){
-    return Capacity;
+    return capacity;
 }
 
 void Stadium::setTeam(string team){
@@ -44,7 +44,7 @@ void Stadium::setOpenDate(Date date){
 }
 
 void Stadium::setCapacity(int cap){
-    Capacity = cap;
+    capacity = cap;
 }
 
 bool Stadium::operator==(Stadium two){
@@ -72,6 +72,6 @@ ostream& operator<<(ostream& out, const Stadium& one){
     out<<one.address<<endl;
     out<<one.phoneNum<<endl;
     out<<one.openDate<<endl;
-    out<<one.Capacity<<endl;
+    out<<one.capacity<<endl;
     return out;
 }
