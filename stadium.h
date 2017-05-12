@@ -31,10 +31,10 @@ public:
 
 private:
 
-    std::string TeamName;
-    std::string Address;
-    std::string OpenDate;
-    std::string PhoneNum;
+    std::string teamName;
+    Address address;
+    Date openDate;
+    std::string phoneNum;
     int Capacity;
 };
 

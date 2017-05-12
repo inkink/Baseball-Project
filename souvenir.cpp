@@ -2,13 +2,13 @@
 
 
 Souvenir::Souvenir(){
-//    Item = "";
+    Item = "";
     Price = 0.0;
     Quantity = 0;
 }
 
-Souvenir::Souvenir(string Name, double cost,int num){
-    Item = Name;
+Souvenir::Souvenir(string name, double cost,int num){
+    Item = name;
     Price = cost;
     Quantity = num;
 }

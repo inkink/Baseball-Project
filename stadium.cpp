@@ -2,21 +2,21 @@
 
 Stadium::Stadium()
 {
-//    Date temp;
-    TeamName ="";
-    PhoneNum = "(000)000-0000";
+    openDate = Date();
+    teamName ="";
+    phoneNum = "(000)000-0000";
     Capacity =0;
 }
 Stadium::Stadium(string team, Address a, string phone, Date date, int cap ){
-    TeamName =team;
-    address =a;
-    OpenDate =date;
-    PhoneNum = phone;
+    teamName =team;
+    address = a;
+    openDate = date;
+    phoneNum = phone;
     Capacity =cap;
 }
 
 string Stadium::getTeamName(){
-    return TeamName;
+    return teamName;
 }
 
 Address Stadium::getAddress(){
@@ -24,7 +24,7 @@ Address Stadium::getAddress(){
 }
 
 Date Stadium::getOpenDate(){
-    return OpenDate;
+    return openDate;
 }
 
 int Stadium::getCapacity(){
@@ -32,7 +32,7 @@ int Stadium::getCapacity(){
 }
 
 void Stadium::setTeam(string team){
-    TeamName = team;
+    teamName = team;
 }
 
 void Stadium::setAddress(Address address){
@@ -40,7 +40,7 @@ void Stadium::setAddress(Address address){
 }
 
 void Stadium::setOpenDate(Date date){
-    OpenDate = date;
+    openDate = date;
 }
 
 void Stadium::setCapacity(int cap){
@@ -48,30 +48,30 @@ void Stadium::setCapacity(int cap){
 }
 
 bool Stadium::operator==(Stadium two){
-    return(TeamName==two.TeamName);
+    return(teamName==two.teamName);
 }
 
 bool Stadium::operator>(Stadium two){
-    return(TeamName>two.TeamName);
+    return(teamName>two.teamName);
 }
 
 bool Stadium::operator<(Stadium two){
-    return(TeamName<two.TeamName);
+    return(teamName<two.teamName);
 }
 
 bool Stadium::operator>=(Stadium two){
-    return(TeamName>=two.TeamName);
+    return(teamName>=two.teamName);
 }
 
 bool Stadium::operator<=(Stadium two){
-    return(TeamName<=two.TeamName);
+    return(teamName<=two.teamName);
 }
 
 ostream& operator<<(ostream& out, const Stadium& one){
-    out<<one.TeamName<<endl;
+    out<<one.teamName<<endl;
     out<<one.address<<endl;
-    out<<one.PhoneNum<<endl;
-    out<<one.OpenDate<<endl;
+    out<<one.phoneNum<<endl;
+    out<<one.openDate<<endl;
     out<<one.Capacity<<endl;
     return out;
 }
