@@ -5,20 +5,20 @@
 class Stadium
 {
 public:
-//    Stadium();
-    Stadium(string team="", string address="", string date="", int cap=0);
-    string getTeamName();
-    string getAddress();
-    string getOpenDate();
+    Stadium();
+    Stadium(std::string team="", std::string address="", std::string date="", int cap=0);
+    std::string getTeamName();
+    std::string getAddress();
+    std::string getOpenDate();
     int getCapacity();
-    void setTeam(string team);
-    void setAddress(string address);
-    void setOpenDate(string date);
+    void setTeam(std::string team);
+    void setAddress(std::string address);
+    void setOpenDate(std::string date);
     void setCapacity(int cap);
 private:
-    string TeamName;
-    string Address;
-    string OpenDate;
+    std::string TeamName;
+    std::string Address;
+    std::string OpenDate;
     int Capacity;
 };
 

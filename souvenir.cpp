@@ -1,6 +1,6 @@
 #include "souvenir.h"
 
-Souvenir::Souvenir(string Name="", double cost=0,int num=0){
+Souvenir::Souvenir(string Name, double cost,int num){
     Item = Name;
     Price = cost;
     Quantity = num;
