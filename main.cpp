@@ -1,31 +1,12 @@
-#include <iostream>
-#include "binarytree.h"
-#include "date.h"
-#include "stadium.h"
-#include "souvenir.h"
-#include "address.h"
-using namespace std;
+#include "mainwindow.h"
+#include <QApplication>
+#include <date.h>
 
-int main()
+int main(int argc, char *argv[])
 {
-//    cout << "Hello World!" << endl;
-//    BinaryTree<int> tree;
-//    int num1 = 2;
-//    tree.insertNode(num1);
-//    tree.insertNode(23);
-//    tree.displayInOrder();
-    Address one("address","city","STATE",123456);
-    Date date(10,12,1908);
-//    cout<<date<<endl;
-//    string team, string address, string phone, Date date, int cap
-    Stadium gym("Team NAME",one,"phone",date,0);
-    cout<<gym<<endl;
+    QApplication a(argc, argv);
+    MainWindow w;
+    w.show();
 
-//    Stadium gym1("abc",one,"phone",date,0);
-//    cout<<(gym>gym1)<<endl;
-
-
-//    cout<<one;
-    return 0;
+    return a.exec();
 }
-

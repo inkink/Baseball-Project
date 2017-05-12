@@ -6,8 +6,8 @@ using namespace std;
 class Souvenir
 {
 public:
-//    Souvenir();
-    Souvenir(string Name="", double cost=0,int num=0);
+    Souvenir();
+    Souvenir(string name="", double cost=0,int num=0);
     string getItem();
     double getPrice();
     int getQuantity();
