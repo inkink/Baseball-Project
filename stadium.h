@@ -9,16 +9,18 @@ class Stadium
 {
 public:
     Stadium();
+
     Stadium(string team, Address a, string phone, Date date, int cap);
-    string getTeamName();
+    std::string getTeamName();
     Address getAddress();
     Date getOpenDate();
-    string getPhoneNum();
+    std::string getPhoneNum();
     int getCapacity();
     void setTeam(string team);
     void setAddress(Address address);
     void setOpenDate(Date date);
     void setPhoneNum(string num);
+  
     void setCapacity(int cap);
     bool operator==(Stadium two);
     bool operator>(Stadium two);
@@ -28,10 +30,11 @@ public:
     friend ostream& operator<<(ostream& out, const Stadium& one);
 
 private:
-    string TeamName;
-    Address address;
-    Date OpenDate;
-    string PhoneNum;
+
+    std::string TeamName;
+    std::string Address;
+    std::string OpenDate;
+    std::string PhoneNum;
     int Capacity;
 };
 

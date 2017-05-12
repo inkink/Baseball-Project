@@ -15,10 +15,18 @@ TEMPLATE = app
 SOURCES += main.cpp\
         mainwindow.cpp \
     date.cpp \
-    address.cpp
+    address.cpp \
+    souvenir.cpp \
+    stadium.cpp
 
 HEADERS  += mainwindow.h \
     date.h \
-    address.h
+    address.h \
+    binarytree.h \
+    souvenir.h \
+    stadium.h
 
 FORMS    += mainwindow.ui
+
+DISTFILES += \
+    README.md
