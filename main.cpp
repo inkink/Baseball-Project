@@ -1,6 +1,9 @@
 #include "mainwindow.h"
 #include <QApplication>
 #include <date.h>
+#include <stadium.h>
+#include <binarytree.h>
+#include "stadiumtree.h"
 
 int main(int argc, char *argv[])
 {

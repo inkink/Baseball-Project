@@ -17,14 +17,18 @@ SOURCES += main.cpp\
     date.cpp \
     address.cpp \
     souvenir.cpp \
-    stadium.cpp
+    stadium.cpp \
+    stadiumtree.cpp
 
 HEADERS  += mainwindow.h \
     date.h \
     address.h \
     binarytree.h \
     souvenir.h \
-    stadium.h
+    stadium.h \
+    stadiumnamecomparator.h \
+    stadiumdatecomparator.h \
+    stadiumtree.h
 
 FORMS    += mainwindow.ui
 

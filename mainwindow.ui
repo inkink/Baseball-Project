@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>772</width>
-    <height>608</height>
+    <width>985</width>
+    <height>607</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -30,6 +30,19 @@
      <attribute name="title">
       <string>Info</string>
      </attribute>
+     <widget class="QPushButton" name="viewAllButton">
+      <property name="geometry">
+       <rect>
+        <x>30</x>
+        <y>30</y>
+        <width>161</width>
+        <height>32</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Display Stadiums</string>
+      </property>
+     </widget>
     </widget>
     <widget class="QWidget" name="tab_2">
      <attribute name="title">
@@ -40,8 +53,8 @@
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
-      <x>310</x>
-      <y>20</y>
+      <x>210</x>
+      <y>0</y>
       <width>161</width>
       <height>20</height>
      </rect>
@@ -58,8 +71,8 @@
    <widget class="QPushButton" name="exit_button">
     <property name="geometry">
      <rect>
-      <x>670</x>
-      <y>510</y>
+      <x>860</x>
+      <y>500</y>
       <width>91</width>
       <height>32</height>
      </rect>
@@ -107,14 +120,27 @@
      </property>
     </widget>
    </widget>
-   <widget class="QTableView" name="tableView">
+   <widget class="QTableWidget" name="tableWidget">
+    <property name="geometry">
+     <rect>
+      <x>270</x>
+      <y>60</y>
+      <width>701</width>
+      <height>401</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLabel" name="tableTitleLabel">
     <property name="geometry">
      <rect>
       <x>280</x>
-      <y>60</y>
-      <width>481</width>
-      <height>401</height>
+      <y>40</y>
+      <width>281</width>
+      <height>16</height>
      </rect>
+    </property>
+    <property name="text">
+     <string/>
     </property>
    </widget>
   </widget>
@@ -123,7 +149,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>772</width>
+     <width>985</width>
      <height>22</height>
     </rect>
    </property>
@@ -140,5 +166,25 @@
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources/>
- <connections/>
+ <connections>
+  <connection>
+   <sender>viewAllButton</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>displayAllStadiums()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>159</x>
+     <y>155</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>266</x>
+     <y>171</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <slot>displayAllStadiums()</slot>
+ </slots>
 </ui>
