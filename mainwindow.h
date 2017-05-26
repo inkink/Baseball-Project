@@ -27,7 +27,7 @@ public slots:
 
 private:
     Ui::MainWindow *ui;
-    StadiumTree<StadiumNameComparator> stadiums;
+    StadiumTree stadiums;
 
 };
 

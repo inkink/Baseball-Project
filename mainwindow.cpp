@@ -8,7 +8,7 @@ MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
-    loadStadiumInfo(filepath + "testinput.txt");
+    loadStadiumInfo(filepath + "input.txt");
     stadiums.displayInOrder();
     ui->setupUi(this);
 }
@@ -34,11 +34,11 @@ void MainWindow::loadStadiumInfo(string filename)
 
         while (getline(ifile, temp)){
             //team name
-            team = temp;
+            stadium = temp;
 
             //stadium name
             getline(ifile,temp);
-            stadium = temp;
+            team = temp;
 
             //address
             getline(ifile,temp);

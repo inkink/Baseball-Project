@@ -38,6 +38,11 @@ Date Stadium::getOpenDate(){
     return openDate;
 }
 
+string Stadium::getPhoneNum()
+{
+    return phoneNum;
+}
+
 int Stadium::getCapacity(){
     return capacity;
 }

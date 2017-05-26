@@ -5,16 +5,16 @@
 #include <QTableWidget>
 
 
-template<class C>
 class StadiumTree :
-        public BinaryTree<Stadium, C>
+        public BinaryTree<Stadium, StadiumNameComparator>
 {
 public:
 
     void DisplayTableInOrder(QTableWidget *table);
+    void test();
 
 private:
-    void inorderHelper(QTableWidget *table, TreeNode<Stadium, C> *nodePtr);
+    void inorderHelper(QTableWidget *table, TreeNode<Stadium, StadiumNameComparator> *nodePtr);
     void appendToTable(QTableWidget *table, Stadium stadium);
 
 };
