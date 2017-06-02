@@ -61,4 +61,12 @@ struct StadiumNameComparator
     }
 };
 
+struct StadiumDateComparator
+{
+    bool operator()(Stadium s1, Stadium s2)
+    {
+        return s1.getOpenDate() < s2.getOpenDate();
+    }
+};
+
 #endif // STADIUM_H

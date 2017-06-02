@@ -18,7 +18,8 @@ SOURCES += main.cpp\
     address.cpp \
     souvenir.cpp \
     stadium.cpp \
-    stadiumtree.cpp
+    stadiumtree.cpp \
+    stadiumdatetree.cpp
 
 HEADERS  += mainwindow.h \
     date.h \
@@ -27,7 +28,8 @@ HEADERS  += mainwindow.h \
     souvenir.h \
     stadium.h \
     stadiumdatecomparator.h \
-    stadiumtree.h
+    stadiumtree.h \
+    stadiumdatetree.h
 
 FORMS    += mainwindow.ui
 
