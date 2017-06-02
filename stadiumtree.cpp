@@ -4,7 +4,17 @@
 
 void StadiumTree::DisplayTableInOrder(QTableWidget *table)
 {
-    inorderHelper(table, this->root);
+    inorderHelper(table, this->root, 0);
+}
+
+void StadiumTree::DisplayNational(QTableWidget *table)
+{
+    inorderHelper(table, this->root, 1);
+}
+
+void StadiumTree::DisplayAmerican(QTableWidget *table)
+{
+    inorderHelper(table, this->root, 2);
 }
 
 void StadiumTree::test()
@@ -13,12 +23,17 @@ void StadiumTree::test()
 }
 
 
-void StadiumTree::inorderHelper(QTableWidget *table, TreeNode<Stadium, StadiumNameComparator> *nodePtr)
+void StadiumTree::inorderHelper(QTableWidget *table, TreeNode<Stadium, StadiumNameComparator> *nodePtr,int type)
 {
     if(nodePtr){
-        inorderHelper(table,nodePtr->left);
-        appendToTable(table, nodePtr->value);
-        inorderHelper(table,nodePtr->right);
+        inorderHelper(table,nodePtr->left, type);
+        if (type == 1 && !nodePtr->value.getLeague())
+            appendToTable(table, nodePtr->value);
+        else if (type == 2 && nodePtr->value.getLeague())
+            appendToTable(table,nodePtr->value);
+        else if (type == 0)
+            appendToTable(table, nodePtr->value);
+        inorderHelper(table,nodePtr->right, type);
     }
 }
 

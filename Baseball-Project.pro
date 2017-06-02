@@ -26,7 +26,6 @@ HEADERS  += mainwindow.h \
     binarytree.h \
     souvenir.h \
     stadium.h \
-    stadiumnamecomparator.h \
     stadiumdatecomparator.h \
     stadiumtree.h
 

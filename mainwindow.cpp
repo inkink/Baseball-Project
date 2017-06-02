@@ -96,7 +96,18 @@ void MainWindow::displayAllStadiums()
     std::string labels = "Stadium,Team,Address,Phone,Open Date,Capacity,Grass,League";
     ui->tableWidget->setHorizontalHeaderLabels(QString::fromStdString(labels).split(","));
 
-    stadiums.DisplayTableInOrder(ui->tableWidget);
+    if (ui->displayAllRadio->isChecked()){
+        stadiums.DisplayTableInOrder(ui->tableWidget);
+        ui->tableTitleLabel->setText("List of all Stadium Information");
+    }
+    else if (ui->displayNationalRadio->isChecked()){
+        stadiums.DisplayNational(ui->tableWidget);
+        ui->tableTitleLabel->setText("List of all National Stadium Information");
+    }
+    else if (ui->displayAmericanRadio->isChecked()){
+        stadiums.DisplayAmerican(ui->tableWidget);
+        ui->tableTitleLabel->setText("List of all American Stadium Information");
+    }
 }
 
 /**********************************************************
