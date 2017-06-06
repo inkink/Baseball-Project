@@ -22,14 +22,15 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = 0);
     void loadStadiumInfo(string filename);
-    void loadDateStadiumInfo(string filename);
-    void loadTeamInfo(string filename);
     void displayMsgBox(std::string message) const;
     ~MainWindow();
 
 public slots:
     void displayAllStadiums();
     void clearTable();
+    void addNewStadium();
+    void setAdminMode();
+    void setUserMode();
 
 private:
     Ui::MainWindow *ui;
