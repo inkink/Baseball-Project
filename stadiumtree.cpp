@@ -63,3 +63,4 @@ void StadiumTree::appendToTable(QTableWidget *table, Stadium stadium)
 }
 
 
+
