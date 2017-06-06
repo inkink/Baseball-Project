@@ -11,6 +11,8 @@ MainWindow::MainWindow(QWidget *parent) :
 {
 //    loadStadiumInfo("input.txt");
 //    ui->setupUi(this);
+    //test for souvenir
+    current = stadiums.getRoot();
     loadStadiumInfo(filepath + "input.txt");
     ui->setupUi(this);
     ui->tabWidget->setCurrentIndex(0);
@@ -147,6 +149,13 @@ void MainWindow::displayAllStadiums()
     }
 
     ui->tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
+}
+
+void MainWindow::listSouvenir()
+{
+    cout << current.displaySouvenir() << endl;
+    QString qstr = QString::fromStdString(current.displaySouvenir());
+    ui->itemDisplay->setText(qstr);
 }
 
 /**********************************************************

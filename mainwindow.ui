@@ -312,7 +312,7 @@
         <x>10</x>
         <y>10</y>
         <width>241</width>
-        <height>131</height>
+        <height>171</height>
        </rect>
       </property>
       <property name="title">
@@ -377,14 +377,53 @@
         <string>Item Quantity:</string>
        </property>
       </widget>
+      <widget class="QPushButton" name="addItemBtn">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>130</y>
+         <width>61</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Add</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="removeItemBtn">
+       <property name="geometry">
+        <rect>
+         <x>90</x>
+         <y>130</y>
+         <width>61</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Remove</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="modifyItemBtn">
+       <property name="geometry">
+        <rect>
+         <x>160</x>
+         <y>130</y>
+         <width>61</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Modify</string>
+       </property>
+      </widget>
      </widget>
      <widget class="QTextBrowser" name="itemDisplay">
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>150</y>
+        <y>190</y>
         <width>241</width>
-        <height>271</height>
+        <height>231</height>
        </rect>
       </property>
      </widget>
@@ -909,8 +948,8 @@
    <slot>displayAllStadiums()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>165</x>
-     <y>262</y>
+     <x>164</x>
+     <y>263</y>
     </hint>
     <hint type="destinationlabel">
      <x>266</x>
@@ -935,6 +974,18 @@
    </hints>
   </connection>
   <connection>
+   <sender>listItemButton</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>listSouvenir()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>175</x>
+     <y>171</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>288</x>
+     <y>150</y>
    <sender>adminAddStadiumButton</sender>
    <signal>clicked()</signal>
    <receiver>MainWindow</receiver>
@@ -985,6 +1036,7 @@
  </connections>
  <slots>
   <slot>displayAllStadiums()</slot>
+  <slot>listSouvenir()</slot>
   <slot>addNewStadium()</slot>
   <slot>setAdminMode()</slot>
   <slot>setUserMode()</slot>

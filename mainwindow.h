@@ -27,6 +27,7 @@ public:
 
 public slots:
     void displayAllStadiums();
+    void listSouvenir();
     void clearTable();
     void addNewStadium();
     void setAdminMode();
@@ -37,6 +38,8 @@ private:
     StadiumTree stadiums;
     StadiumDateTree date_stadiums;
     StadiumTeamTree team_stadiums;
+    //test for souvenir
+    Stadium current;
 
 };
 
