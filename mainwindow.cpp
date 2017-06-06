@@ -16,6 +16,9 @@ MainWindow::MainWindow(QWidget *parent) :
 //    loadStadiumInfo(filepath + "input.txt");
 //    loadDateStadiumInfo(filepath + "input.txt");
 //    ui->setupUi(this);
+
+    //test for souvenir
+    current = stadiums.getRoot();
 }
 
 //destructor
@@ -267,6 +270,13 @@ void MainWindow::displayAllStadiums()
             ui->tableTitleLabel->setText("List of American Stadium Information by Date");
             }
     }
+}
+
+void MainWindow::listSouvenir()
+{
+    cout << current.displaySouvenir() << endl;
+    QString qstr = QString::fromStdString(current.displaySouvenir());
+    ui->itemDisplay->setText(qstr);
 }
 
 /**********************************************************

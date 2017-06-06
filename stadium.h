@@ -1,10 +1,11 @@
 #ifndef STADIUM_H
 #define STADIUM_H
 #include <vector>
+#include <algorithm>
 #include "iostream"
 #include "date.h"
 #include "address.h"
-//#include "souvenir.h"
+#include "souvenir.h"
 using namespace std;
 
 
@@ -43,6 +44,11 @@ public:
     string getStadiumName() const;
     void setStadiumName(const string &value);
 
+    void addSouvenir(string name, double cost);
+    void removeSouvenir(string itemName);
+    void modifySouvenir(string itemName, string name, double cost);
+    string displaySouvenir();
+
 private:
     string teamName;
     string stadiumName;
@@ -53,7 +59,7 @@ private:
     int capacity;
     bool league; //national = 0 , american = 1
     bool grass;
-//    vector<Souvenir> souvenirs;
+    vector<Souvenir> souvenirs;
 };
 
 struct StadiumNameComparator
