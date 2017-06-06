@@ -11,7 +11,15 @@ Stadium::Stadium()
     capacity =0;
     league = 0;
     grass = 0;
-
+//    souvenirs.reserve(50);
+//    Souvenir cap(this, "Baseball cap", 25.99);
+//    Souvenir bat(this, "Baseball cap", 35.35);
+//    Souvenir pennant(this, "Baseball cap", 12.99);
+//    Souvenir baseball(this, "Baseball cap", 19.99);
+//    souvenirs.push_back(cap);
+//    souvenirs.push_back(bat);
+//    souvenirs.push_back(pennant);
+//    souvenirs.push_back(baseball);
 }
 Stadium::Stadium(string team, string stadium, string a, string s,
                  string phone, Date date, int cap, bool l, bool g){
@@ -24,6 +32,14 @@ Stadium::Stadium(string team, string stadium, string a, string s,
     grass = g;
     league = l;
     state = s;
+//    Souvenir cap(this, "Baseball cap", 25.99);
+//    Souvenir bat(this, "Baseball cap", 35.35);
+//    Souvenir pennant(this, "Baseball cap", 12.99);
+//    Souvenir baseball(this, "Baseball cap", 19.99);
+//    souvenirs.push_back(cap);
+//    souvenirs.push_back(bat);
+//    souvenirs.push_back(pennant);
+//    souvenirs.push_back(baseball);
 }
 
 string Stadium::getTeamName(){

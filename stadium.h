@@ -1,8 +1,10 @@
 #ifndef STADIUM_H
 #define STADIUM_H
+#include <vector>
 #include "iostream"
 #include "date.h"
 #include "address.h"
+//#include "souvenir.h"
 using namespace std;
 
 
@@ -51,6 +53,7 @@ private:
     int capacity;
     bool league; //national = 0 , american = 1
     bool grass;
+//    vector<Souvenir> souvenirs;
 };
 
 struct StadiumNameComparator
