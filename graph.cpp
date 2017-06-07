@@ -1,4 +1,3 @@
-#include <iostream>
 #include <iomanip>
 #include "graph.h"
 
@@ -18,6 +17,7 @@ graph::graph(int **m, int ver){
         for(int j=0; j<ver; j++)
             matrix[i][j]=m[i][j];
     }
+    FloydWarshall();
 }
 
 graph::~graph(){
@@ -27,6 +27,18 @@ graph::~graph(){
         walker++;
     }
     delete[] matrix;
+    walker=distance;
+    for(int i=0;i<V;i++){
+        delete[] *walker;
+        walker++;
+    }
+    delete[] distance;
+    walker=path;
+    for(int i=0;i<V;i++){
+        delete[] *walker;
+        walker++;
+    }
+    delete[] path;
     V=0;
 }
 
@@ -58,156 +70,18 @@ graph& graph::operator=(graph& other){
         for(int j=0; j<V; j++)
             matrix[i][j]=other.matrix[i][j];
     }
+    return other;
 }
 
-void graph::shortestPath(int startingPoint){//dijkstra
-    int cost[V];
-    int parent[V];
-    bool determined[V];
-    for(int i=0;i<V;i++){  //init
-        cost[i]=INT_MAX;
-        determined[i]=false;
-        parent[i]=-1;
-    }
-    cost[startingPoint]=0;
-
-    for(int count=0;count<V-1;count++){
-        int processIndex=findProcessingIndex(cost,determined);
-        for(int i=0;i<V;i++){
-            if(matrix[processIndex][i]!=0 && !determined[i]){//if !=0, that means edge exists
-                if((matrix[processIndex][i]+cost[processIndex])<cost[i]){//cost[processIndex]!=MAX
-                    cost[i]=matrix[processIndex][i]+cost[processIndex];
-                    parent[i]=processIndex;
-                }
-            }
-        }
-        determined[processIndex]=true;
-    }
-    printDijkstra(startingPoint,cost,parent);
-}
-
-void graph::minSpanTree(){
-    bool reached[V];
-    int** MST;
-    MST=new int*[V];
-    int** walker=MST;
-    for(int i=0;i<V;i++){
-        *walker=new int[V];
-        walker++;
-    }
-    int min=INT_MAX;
-    for (int i=0;i<V;i++){//init
-        reached[i]=false;
-        for (int j=0;j<V;j++)
-            MST[i][j]=0;
-    }
-    reached[0]=true;
-    int target;
-    int source;
-    for(int count=0;count<V-1;count++){
-        min=INT_MAX;
-        for (int i=0;i<V;i++){
-            if(reached[i]){
-                for (int j=0;j<V;j++){
-                    if(matrix[i][j]!=0 && !reached[j]){
-                        if(matrix[i][j]<min){
-                            min=matrix[i][j];
-                            source=i;
-                            target=j;
-                        }
-                    }
-                }
-            }
-        }
-        MST[source][target]=min;
-        reached[target]=true;
-    }
-    printMST(MST);
-}
-
-void graph::printMST(int** MST){
-    cout<<"---Minimum Spanning Tree---"<<endl;
-    int min=INT_MAX;
-    int prevMin=0;
-    int source;
-    int target;
-    for(int count=1;count<V;count++){
-        min=INT_MAX;
-        for(int i=0;i<V;i++){
-            for(int j=0;j<V;j++){
-                if(MST[i][j]!=0&&MST[i][j]<min&&MST[i][j]>prevMin){
-                    min=MST[i][j];
-                    source=i;
-                    target=j;
-                }
-            }
-        }
-        prevMin=min;
-        cout<<count<<":("<<source<<", "<<target<<") "
-           <<min<<endl;
-    }
-}
-
-int graph::findProcessingIndex(int distance[], bool determined[]){
-    int min=INT_MAX;
-    int target;
-    for(int i=0;i<V;i++){
-        if(!determined[i]){
-            if(distance[i]<min){
-                min=distance[i];
-                target=i;
-            }
-        }
-    }
-    return target;
-}
-
-void graph::printDijkstra(int from, int cost[], int parent[]){
-    cout<<"---shortest distance (starting from "<<from<<")---"<<endl;
-    int min=INT_MAX;
-    int prevMin=INT_MIN;
-    int tempI;
-    for(int count=0;count<V;count++){
-        min=INT_MAX;
-        for(int i=0;i<V;i++){
-            if(cost[i]<min&&cost[i]>prevMin){
-                tempI=i;
-                min=cost[i];
-            }
-        }
-        prevMin=min;
-        cout<<tempI<<": "<<cost[tempI]<<'{';
-        printPath(tempI,parent);
-        cout<<'}'<<endl;
-    }
-}
-
-void graph::printPath(int destination, int parent[],bool comma){
-    if(destination!=-1){
-        printPath(parent[destination],parent,true);
-        cout<<destination;
-        if(comma)
-            cout<<", ";
-    }
+int graph::shortestPath(int start, int end){
+    printPathInFW(start,end);
+    return distance[start][end];
 }
 
 void graph::FloydWarshall(){
-    cout<<endl<<"*** FW ***"<<endl;
     //init
-    int distance[V][V];
-    int** path;
     path=new int*[V];
-    //distance is copy from the matrix, if no path, INT_MAX
-    for(int i=0;i<V;i++){
-        for(int j=0;j<V;j++){
-            if(matrix[i][j]==0)
-                distance[i][j]=INT_MAX;//if no path, max
-            else
-                distance[i][j]=matrix[i][j];
-            if(i==j)
-                distance[i][j]=0; //if to itself, 0
-        }
-    }
+    distance=new int*[V];
     int** walker=path;
     for(int i=0;i<V;i++){
         *walker=new int[V];
@@ -217,6 +91,22 @@ void graph::FloydWarshall(){
                 path[i][j]=-1;
             else
                 path[i][j]=i;
+        }
+    }
+    walker=distance;
+    for(int i=0;i<V;i++){
+        *walker=new int[V];
+        *walker++;
+    }
+    //distance is copy from the matrix, if no path, INT_MAX
+    for(int i=0;i<V;i++){
+        for(int j=0;j<V;j++){
+            if(matrix[i][j]==0)
+                distance[i][j]=INT_MAX;//if no path, max
+            else
+                distance[i][j]=matrix[i][j];
+            if(i==j)
+                distance[i][j]=0; //if to itself, 0
         }
     }
     //start
@@ -233,39 +123,76 @@ void graph::FloydWarshall(){
         }
     }
     //output
-    int max=0;
-    int maxj=0;
-    for(int j=0;j<V;j++){
-        if (distance[2][j]>max){
-            max=distance[2][j];
-            maxj=j;
-        }
-    }
-    cout<<"the path from 2 to "<<maxj<<" is:"<<endl;
-    cout<<'2';
-    printPathInFW(path,2,maxj);
-    cout<<endl;
-    cout<<"*** Raw Data ***"<<endl;
-    cout<<"distance:"<<endl;
-    for(int i=0;i<V;i++){
-        for(int j=0;j<V;j++){
-            cout<<setw(5)<<distance[i][j];
-        }
-        cout<<endl;
-    }
-    cout<<"path:"<<endl;
-    for(int i=0;i<V;i++){
-        for(int j=0;j<V;j++){
-            cout<<setw(4)<<path[i][j];
-        }
-        cout<<endl;
+//    cout<<"*** Raw Data ***"<<endl;
+//    cout<<"distance:"<<endl;
+//    for(int i=0;i<V;i++){
+//        for(int j=0;j<V;j++){
+//            cout<<setw(5)<<distance[i][j];
+//        }
+//        cout<<endl;
+//    }
+//    cout<<"path:"<<endl;
+//    for(int i=0;i<V;i++){
+//        for(int j=0;j<V;j++){
+//            cout<<setw(4)<<path[i][j];
+//        }
+//        cout<<endl;
+//    }
+}
+
+void graph::printPathInFW(int i, int j){
+    if(path[i][j]!=-1){
+        printPathInFW(i,path[i][j]);
+        cout<<"->"<<j;
     }
 }
 
-void graph::printPathInFW(int** path, int i, int j){
+//
+int graph::findShortestForAllB(int start){
+    node* root;
+    root=new node(NULL,start,0);
+    spinTree(root);
+    node* target;
+    int minD=INT_MAX;
+    findDest(root,target,minD);
 
-    if(path[i][j]!=-1){
-        printPathInFW(path,i,path[i][j]);
-        cout<<"->"<<j;
+    printPath(target);
+    return minD;
+}
+
+void graph::findDest(node* headptr,node* &target, int& min){
+    if(headptr->isTheEnd){
+        if(headptr->dist < min){
+            min=headptr->dist;
+            target=headptr;
+        }
     }
+    for(int i=0;i<5;i++){//temp 5
+        if(headptr->children[i]){
+            findDest(headptr->children[i],target,min);
+        }
+    }
+}
+
+void graph::spinTree(node* n){
+    //put every reachable and unreached node as child
+    for(int i=0;i<V;i++){
+        if(!(n->indexReached[i])){//if unreached
+            if(matrix[n->index][i]!=0){//reachable
+                //then want to add i as a child of n
+                int j=0;
+                while(n->children[j]!=NULL)
+                    j++;//find a empty slop
+                int d=matrix[n->index][i];
+                n->children[j]=new node(n,i,d);
+                spinTree(n->children[j]);
+            }
+        }
+    }
+}
+
+void graph::printPath(node* tar){
+    if(tar->pre)
+        printPath(tar->pre);
+    cout<<tar->index<<' ';
 }
