@@ -2,21 +2,23 @@
 #include "ui_mainwindow.h"
 
 //file path for input.txt
-//string filepath = "/C:/Users/Administrator/Desktop/CS8/Project2/build-Baseball-Project-Desktop_Qt_5_7_0_MinGW_32bit-Debug/";
-string filepath = "/Users/Jason/Documents/School/Spring 2017/CS 8/Baseball Project/";
+string filepath = "/C:/Users/Administrator/Desktop/CS8/Project2/build-Baseball-Project-Desktop_Qt_5_7_0_MinGW_32bit-Debug/";
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
-//    loadStadiumInfo("input.txt");
+    loadStadiumInfo("input.txt");
+    loadDateStadiumInfo("input.txt");
+    loadTeamInfo("input.txt");
+    stadiums.displayInOrder();
+    ui->setupUi(this);
+//    loadStadiumInfo(filepath + "input.txt");
+//    loadDateStadiumInfo(filepath + "input.txt");
 //    ui->setupUi(this);
+
     //test for souvenir
     current = stadiums.getRoot();
-    loadStadiumInfo(filepath + "input.txt");
-    ui->setupUi(this);
-    ui->tabWidget->setCurrentIndex(0);
-    ui->tabWidget->setTabEnabled(3,false);
 }
 
 //destructor
@@ -80,9 +82,68 @@ void MainWindow::loadStadiumInfo(string filename)
 
             stadiums.insertNode(Stadium(team, stadium, address, state, phone, Date(month,day,year),
                                     cap, league, grass));
+
+            getline(ifile,temp);
+        }
+    }
+    ifile.clear();
+    ifile.close();
+}
+
+//load the information from the file into the
+//stadium tree
+void MainWindow::loadDateStadiumInfo(string filename)
+{
+    ifstream ifile;
+    ifile.open(filename);
+
+    if (ifile.is_open()){
+
+        std::string temp, team, stadium, state, phone, address;
+        int cap, month, day, year;
+        bool grass, league;
+
+        while (getline(ifile, temp)){
+            //team name
+            stadium = temp;
+
+            //stadium name
+            getline(ifile,temp);
+            team = temp;
+
+            //address
+            getline(ifile,temp);
+            address = temp;
+
+            //state
+            getline(ifile,temp);
+            state = temp;
+
+            //phone
+            getline(ifile,temp);
+            phone = temp;
+
+            //open date
+            getline(ifile,temp,'/');
+            month = std::stoi(temp);
+            getline(ifile,temp,'/');
+            day = std::stoi(temp);
+            getline(ifile,temp,'\n');
+            year = std::stoi(temp);
+
+            //capacity
+            getline(ifile,temp);
+            cap = std::stoi(temp);
+
+            //grass
+            getline(ifile,temp);
+            grass = std::stoi(temp);
+
+            //leaguetype
+            getline(ifile,temp);
+            league = std::stoi(temp);
+
             date_stadiums.insertNode(Stadium(team, stadium, address, state, phone, Date(month,day,year),
-                                    cap, league, grass));
-            team_stadiums.insertNode(Stadium(team, stadium, address, state, phone, Date(month,day,year),
                                     cap, league, grass));
 
             getline(ifile,temp);
@@ -92,6 +153,68 @@ void MainWindow::loadStadiumInfo(string filename)
     ifile.close();
 }
 
+//load the information from the file into the
+//stadium tree
+void MainWindow::loadTeamInfo(string filename)
+{
+    ifstream ifile;
+    ifile.open(filename);
+
+    if (ifile.is_open()){
+
+        std::string temp, team, stadium, state, phone, address;
+        int cap, month, day, year;
+        bool grass, league;
+
+        while (getline(ifile, temp)){
+            //team name
+            stadium = temp;
+
+            //stadium name
+            getline(ifile,temp);
+            team = temp;
+
+            //address
+            getline(ifile,temp);
+            address = temp;
+
+            //state
+            getline(ifile,temp);
+            state = temp;
+
+            //phone
+            getline(ifile,temp);
+            phone = temp;
+
+            //open date
+            getline(ifile,temp,'/');
+            month = std::stoi(temp);
+            getline(ifile,temp,'/');
+            day = std::stoi(temp);
+            getline(ifile,temp,'\n');
+            year = std::stoi(temp);
+
+            //capacity
+            getline(ifile,temp);
+            cap = std::stoi(temp);
+
+            //grass
+            getline(ifile,temp);
+            grass = std::stoi(temp);
+
+            //leaguetype
+            getline(ifile,temp);
+            league = std::stoi(temp);
+
+            team_stadiums.insertNode(Stadium(team, stadium, address, state, phone, Date(month,day,year),
+                                    cap, league, grass));
+
+            getline(ifile,temp);
+        }
+    }
+    ifile.clear();
+    ifile.close();
+}
 
 //display all the stadiums on the table
 void MainWindow::displayAllStadiums()
@@ -147,8 +270,6 @@ void MainWindow::displayAllStadiums()
             ui->tableTitleLabel->setText("List of American Stadium Information by Date");
             }
     }
-
-    ui->tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
 }
 
 void MainWindow::listSouvenir()
@@ -157,6 +278,53 @@ void MainWindow::listSouvenir()
     QString qstr = QString::fromStdString(current.displaySouvenir());
     ui->itemDisplay->setText(qstr);
 }
+
+void MainWindow::buySouvenir()
+{
+    string itemName = ui->itemNameEdit->text().toStdString();
+    int itemQuantity = ui->itemQuantityEdit->text().toInt();
+    if(current.findSouvenir(itemName))
+    {
+        Souvenir temp = current.getSouvenir(itemName);
+        cout << temp.getItem() << " " << temp.getOriginName() << " " << temp.getPrice() << endl;
+        cart.buyItem(temp, itemQuantity);
+    }
+}
+
+void MainWindow::addSouvenir()
+{
+    string itemName = ui->newNameEdit->text().toStdString();
+    double itemPrice = ui->newPriceEdit->text().toDouble();
+    current.addSouvenir(itemName, itemPrice);
+}
+
+void MainWindow::removeSouvenir()
+{
+    string itemName = ui->itemNameEdit->text().toStdString();
+    if(current.findSouvenir(itemName))
+    {
+        current.removeSouvenir(itemName);
+    }
+}
+
+void MainWindow::modifySouvenir()
+{
+    string oldName = ui->itemNameEdit->text().toStdString();
+    if(current.findSouvenir(oldName))
+    {
+        string newName = ui->newNameEdit->text().toStdString();
+        double newCost = ui->newPriceEdit->text().toDouble();
+        current.modifySouvenir(oldName, newName, newCost);
+    }
+}
+
+void MainWindow::displayCart()
+{
+    cout << cart.displayCart() << endl;
+    QString qstr = QString::fromStdString(cart.displayCart());
+    ui->itemDisplay->setText(qstr);
+}
+
 
 /**********************************************************
  * void MainWindow::clearTable()
@@ -173,83 +341,6 @@ void MainWindow::clearTable()
     ui->tableWidget->setRowCount(0);
     ui->tableWidget->setColumnCount(0);
     ui->tableTitleLabel->clear();
-}
-
-void MainWindow::addNewStadium()
-{
-    std::string temp, team, stadium, state, phone, address;
-    int cap, month, day, year;
-    bool grass, league;
-    if(ui->teamLine->text().isEmpty()||
-            ui->nameLine->text().isEmpty()||
-            ui->stateLine->text().isEmpty()||
-            ui->phoneLine->text().isEmpty()||
-            ui->addressLine->text().isEmpty()
-            ){
-        displayMsgBox("Please enter information into all fields.");
-        return;
-    }
-    team = (ui->teamLine->text()).toStdString();
-    stadium = ui->nameLine->text().toStdString();
-    state = ui->stateLine->text().toStdString();
-    phone = ui->phoneLine->text().toStdString();
-    address = ui->addressLine->text().toStdString();
-    if (ui->capLine->text().toInt() > 0)
-        cap = ui->capLine->text().toInt();
-    else{
-        displayMsgBox("Please enter a valid capacity.");
-        return;
-    }
-
-    if (ui->monthLine->text().toInt() > 0 &&  ui->monthLine->text().toInt() < 13)
-        month = ui->monthLine->text().toInt();
-    else{
-        displayMsgBox("Please enter a valid month.");
-        return;
-    }
-
-    if ( ui->dayLine->text().toInt() > 0 &&  ui->dayLine->text().toInt() < 32)
-        day = ui->dayLine->text().toInt();
-    else{
-        displayMsgBox("Please enter a valid day.");
-        return;
-    }
-    if ( ui->yearLine->text().toInt() > 1800 &&  ui->yearLine->text().toInt() < 2017)
-        year = ui->dayLine->text().toInt();
-    else{
-        displayMsgBox("Please enter a valid year.");
-        return;
-    }
-
-    if (ui->isGrassRadio->isChecked())
-        grass = true;
-    else
-        grass = false;
-
-    if (ui->isAmericanRadio->isChecked())
-        league = 1;
-    else
-        league = 0;
-
-    stadiums.insertNode(Stadium(team, stadium, address, state, phone, Date(month,day,year),
-                            cap, league, grass));
-    date_stadiums.insertNode(Stadium(team, stadium, address, state, phone, Date(month,day,year),
-                            cap, league, grass));
-    team_stadiums.insertNode(Stadium(team, stadium, address, state, phone, Date(month,day,year),
-                                     cap, league, grass));
-}
-
-void MainWindow::setAdminMode()
-{
-    displayMsgBox("Welcome Administrator.");
-    ui->tabWidget->setTabEnabled(3,true);
-}
-
-void MainWindow::setUserMode()
-{
-    displayMsgBox("Welcome User.");
-    ui->tabWidget->setCurrentIndex(0);
-    ui->tabWidget->setTabEnabled(3,false);
 }
 
 /**********************************************************

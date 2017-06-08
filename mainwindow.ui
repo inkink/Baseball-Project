@@ -302,6 +302,338 @@
       </widget>
      </widget>
     </widget>
+    <widget class="QWidget" name="AdminTab">
+     <attribute name="title">
+      <string>Admin</string>
+     </attribute>
+     <widget class="QGroupBox" name="groupBox_4">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>10</y>
+        <width>251</width>
+        <height>451</height>
+       </rect>
+      </property>
+      <property name="title">
+       <string>Add Stadium</string>
+      </property>
+      <widget class="QLabel" name="label_5">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>30</y>
+         <width>91</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Stadium Name</string>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="nameLine">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>50</y>
+         <width>201</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="placeholderText">
+        <string/>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="teamLine">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>100</y>
+         <width>201</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="placeholderText">
+        <string/>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_6">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>80</y>
+         <width>91</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Team Name</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_7">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>130</y>
+         <width>91</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Address</string>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="addressLine">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>150</y>
+         <width>201</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="placeholderText">
+        <string/>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_8">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>180</y>
+         <width>91</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>State (abbrev)</string>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="stateLine">
+       <property name="geometry">
+        <rect>
+         <x>110</x>
+         <y>180</y>
+         <width>101</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="placeholderText">
+        <string>XX</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_9">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>210</y>
+         <width>51</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Phone #</string>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="phoneLine">
+       <property name="geometry">
+        <rect>
+         <x>70</x>
+         <y>210</y>
+         <width>141</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="placeholderText">
+        <string>(###) - ### - ####</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_10">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>240</y>
+         <width>61</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Capacity</string>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="capLine">
+       <property name="geometry">
+        <rect>
+         <x>70</x>
+         <y>240</y>
+         <width>141</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="placeholderText">
+        <string>#######</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_11">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>270</y>
+         <width>71</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Open Date</string>
+       </property>
+      </widget>
+      <widget class="QComboBox" name="monthCombo">
+       <property name="geometry">
+        <rect>
+         <x>80</x>
+         <y>270</y>
+         <width>51</width>
+         <height>26</height>
+        </rect>
+       </property>
+       <property name="maxVisibleItems">
+        <number>12</number>
+       </property>
+      </widget>
+      <widget class="QComboBox" name="dayCombo">
+       <property name="geometry">
+        <rect>
+         <x>130</x>
+         <y>270</y>
+         <width>51</width>
+         <height>26</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QComboBox" name="yearCombo">
+       <property name="geometry">
+        <rect>
+         <x>180</x>
+         <y>270</y>
+         <width>61</width>
+         <height>26</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QFrame" name="frame_2">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>300</y>
+         <width>121</width>
+         <height>61</height>
+        </rect>
+       </property>
+       <property name="frameShape">
+        <enum>QFrame::StyledPanel</enum>
+       </property>
+       <property name="frameShadow">
+        <enum>QFrame::Raised</enum>
+       </property>
+       <widget class="QRadioButton" name="isGrassRadio">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>10</y>
+          <width>71</width>
+          <height>20</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Grass</string>
+        </property>
+       </widget>
+       <widget class="QRadioButton" name="notGrassRadio">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>30</y>
+          <width>101</width>
+          <height>20</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Artificial Turf</string>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QFrame" name="frame_3">
+       <property name="geometry">
+        <rect>
+         <x>140</x>
+         <y>300</y>
+         <width>101</width>
+         <height>61</height>
+        </rect>
+       </property>
+       <property name="frameShape">
+        <enum>QFrame::StyledPanel</enum>
+       </property>
+       <property name="frameShadow">
+        <enum>QFrame::Raised</enum>
+       </property>
+       <widget class="QRadioButton" name="isNationalRadio">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>10</y>
+          <width>81</width>
+          <height>20</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>National</string>
+        </property>
+       </widget>
+       <widget class="QRadioButton" name="isAmericanRadio">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>30</y>
+          <width>81</width>
+          <height>20</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>American</string>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QPushButton" name="adminAddStadiumButton">
+       <property name="geometry">
+        <rect>
+         <x>70</x>
+         <y>390</y>
+         <width>113</width>
+         <height>32</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Add Stadium</string>
+       </property>
+      </widget>
+     </widget>
+    </widget>
     <widget class="QWidget" name="tab">
      <attribute name="title">
       <string>Souvenir</string>
@@ -312,7 +644,7 @@
         <x>10</x>
         <y>10</y>
         <width>241</width>
-        <height>171</height>
+        <height>241</height>
        </rect>
       </property>
       <property name="title">
@@ -323,7 +655,7 @@
         <rect>
          <x>19</x>
          <y>30</y>
-         <width>201</width>
+         <width>131</width>
          <height>31</height>
         </rect>
        </property>
@@ -364,7 +696,7 @@
         <string>Item Name:</string>
        </property>
       </widget>
-      <widget class="QLabel" name="label_13">
+      <widget class="QLabel" name="quantityPriceLbl">
        <property name="geometry">
         <rect>
          <x>30</x>
@@ -416,408 +748,88 @@
         <string>Modify</string>
        </property>
       </widget>
+      <widget class="QPushButton" name="buyItemBtn">
+       <property name="geometry">
+        <rect>
+         <x>160</x>
+         <y>30</y>
+         <width>61</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Buy</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="quantityPriceLbl_2">
+       <property name="geometry">
+        <rect>
+         <x>30</x>
+         <y>170</y>
+         <width>71</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>New Name:</string>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="newNameEdit">
+       <property name="geometry">
+        <rect>
+         <x>110</x>
+         <y>170</y>
+         <width>113</width>
+         <height>21</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QLabel" name="quantityPriceLbl_3">
+       <property name="geometry">
+        <rect>
+         <x>30</x>
+         <y>200</y>
+         <width>71</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>New Price:</string>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="newPriceEdit">
+       <property name="geometry">
+        <rect>
+         <x>110</x>
+         <y>200</y>
+         <width>113</width>
+         <height>21</height>
+        </rect>
+       </property>
+      </widget>
      </widget>
      <widget class="QTextBrowser" name="itemDisplay">
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>190</y>
+        <y>260</y>
         <width>241</width>
-        <height>231</height>
+        <height>151</height>
        </rect>
       </property>
      </widget>
-     <widget class="QLabel" name="label_14">
+     <widget class="QPushButton" name="displayCartBtn">
       <property name="geometry">
        <rect>
-        <x>30</x>
-        <y>430</y>
-        <width>61</width>
-        <height>16</height>
+        <x>10</x>
+        <y>420</y>
+        <width>241</width>
+        <height>31</height>
        </rect>
       </property>
       <property name="text">
-       <string>Grand Total:</string>
+       <string>Display Shopping Cart</string>
       </property>
-     </widget>
-     <widget class="QLabel" name="totalLabel">
-      <property name="geometry">
-       <rect>
-        <x>100</x>
-        <y>430</y>
-        <width>47</width>
-        <height>16</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>0.00</string>
-      </property>
-     </widget>
-    </widget>
-    <widget class="QWidget" name="AdminTab">
-     <attribute name="title">
-      <string>Admin</string>
-     </attribute>
-     <widget class="QTabWidget" name="tabWidgetAdmin">
-      <property name="geometry">
-       <rect>
-        <x>0</x>
-        <y>0</y>
-        <width>261</width>
-        <height>461</height>
-       </rect>
-      </property>
-      <property name="currentIndex">
-       <number>0</number>
-      </property>
-      <widget class="QWidget" name="tab_2">
-       <attribute name="title">
-        <string>Add</string>
-       </attribute>
-       <widget class="QGroupBox" name="groupBox_4">
-        <property name="geometry">
-         <rect>
-          <x>0</x>
-          <y>0</y>
-          <width>251</width>
-          <height>451</height>
-         </rect>
-        </property>
-        <property name="title">
-         <string>Add Stadium</string>
-        </property>
-        <widget class="QLabel" name="label_5">
-         <property name="geometry">
-          <rect>
-           <x>10</x>
-           <y>30</y>
-           <width>91</width>
-           <height>16</height>
-          </rect>
-         </property>
-         <property name="text">
-          <string>Stadium Name</string>
-         </property>
-        </widget>
-        <widget class="QLineEdit" name="nameLine">
-         <property name="geometry">
-          <rect>
-           <x>10</x>
-           <y>50</y>
-           <width>201</width>
-           <height>21</height>
-          </rect>
-         </property>
-         <property name="placeholderText">
-          <string/>
-         </property>
-        </widget>
-        <widget class="QLineEdit" name="teamLine">
-         <property name="geometry">
-          <rect>
-           <x>10</x>
-           <y>100</y>
-           <width>201</width>
-           <height>21</height>
-          </rect>
-         </property>
-         <property name="text">
-          <string/>
-         </property>
-         <property name="placeholderText">
-          <string/>
-         </property>
-        </widget>
-        <widget class="QLabel" name="label_6">
-         <property name="geometry">
-          <rect>
-           <x>10</x>
-           <y>80</y>
-           <width>91</width>
-           <height>16</height>
-          </rect>
-         </property>
-         <property name="text">
-          <string>Team Name</string>
-         </property>
-        </widget>
-        <widget class="QLabel" name="label_7">
-         <property name="geometry">
-          <rect>
-           <x>10</x>
-           <y>130</y>
-           <width>91</width>
-           <height>16</height>
-          </rect>
-         </property>
-         <property name="text">
-          <string>Address</string>
-         </property>
-        </widget>
-        <widget class="QLineEdit" name="addressLine">
-         <property name="geometry">
-          <rect>
-           <x>10</x>
-           <y>150</y>
-           <width>201</width>
-           <height>21</height>
-          </rect>
-         </property>
-         <property name="text">
-          <string/>
-         </property>
-         <property name="placeholderText">
-          <string/>
-         </property>
-        </widget>
-        <widget class="QLabel" name="label_8">
-         <property name="geometry">
-          <rect>
-           <x>10</x>
-           <y>180</y>
-           <width>91</width>
-           <height>16</height>
-          </rect>
-         </property>
-         <property name="text">
-          <string>State (abbrev)</string>
-         </property>
-        </widget>
-        <widget class="QLineEdit" name="stateLine">
-         <property name="geometry">
-          <rect>
-           <x>110</x>
-           <y>180</y>
-           <width>101</width>
-           <height>21</height>
-          </rect>
-         </property>
-         <property name="text">
-          <string/>
-         </property>
-         <property name="placeholderText">
-          <string>XX</string>
-         </property>
-        </widget>
-        <widget class="QLabel" name="label_9">
-         <property name="geometry">
-          <rect>
-           <x>10</x>
-           <y>210</y>
-           <width>51</width>
-           <height>16</height>
-          </rect>
-         </property>
-         <property name="text">
-          <string>Phone #</string>
-         </property>
-        </widget>
-        <widget class="QLineEdit" name="phoneLine">
-         <property name="geometry">
-          <rect>
-           <x>70</x>
-           <y>210</y>
-           <width>141</width>
-           <height>21</height>
-          </rect>
-         </property>
-         <property name="text">
-          <string/>
-         </property>
-         <property name="placeholderText">
-          <string>(###) - ### - ####</string>
-         </property>
-        </widget>
-        <widget class="QLabel" name="label_10">
-         <property name="geometry">
-          <rect>
-           <x>10</x>
-           <y>240</y>
-           <width>61</width>
-           <height>16</height>
-          </rect>
-         </property>
-         <property name="text">
-          <string>Capacity</string>
-         </property>
-        </widget>
-        <widget class="QLineEdit" name="capLine">
-         <property name="geometry">
-          <rect>
-           <x>70</x>
-           <y>240</y>
-           <width>141</width>
-           <height>21</height>
-          </rect>
-         </property>
-         <property name="text">
-          <string/>
-         </property>
-         <property name="placeholderText">
-          <string>#######</string>
-         </property>
-        </widget>
-        <widget class="QLabel" name="label_11">
-         <property name="geometry">
-          <rect>
-           <x>10</x>
-           <y>270</y>
-           <width>71</width>
-           <height>16</height>
-          </rect>
-         </property>
-         <property name="text">
-          <string>Open Date</string>
-         </property>
-        </widget>
-        <widget class="QFrame" name="frame_2">
-         <property name="geometry">
-          <rect>
-           <x>10</x>
-           <y>300</y>
-           <width>121</width>
-           <height>61</height>
-          </rect>
-         </property>
-         <property name="frameShape">
-          <enum>QFrame::StyledPanel</enum>
-         </property>
-         <property name="frameShadow">
-          <enum>QFrame::Raised</enum>
-         </property>
-         <widget class="QRadioButton" name="isGrassRadio">
-          <property name="geometry">
-           <rect>
-            <x>10</x>
-            <y>10</y>
-            <width>71</width>
-            <height>20</height>
-           </rect>
-          </property>
-          <property name="text">
-           <string>Grass</string>
-          </property>
-         </widget>
-         <widget class="QRadioButton" name="notGrassRadio">
-          <property name="geometry">
-           <rect>
-            <x>10</x>
-            <y>30</y>
-            <width>101</width>
-            <height>20</height>
-           </rect>
-          </property>
-          <property name="text">
-           <string>Artificial Turf</string>
-          </property>
-         </widget>
-        </widget>
-        <widget class="QFrame" name="frame_3">
-         <property name="geometry">
-          <rect>
-           <x>140</x>
-           <y>300</y>
-           <width>101</width>
-           <height>61</height>
-          </rect>
-         </property>
-         <property name="frameShape">
-          <enum>QFrame::StyledPanel</enum>
-         </property>
-         <property name="frameShadow">
-          <enum>QFrame::Raised</enum>
-         </property>
-         <widget class="QRadioButton" name="isNationalRadio">
-          <property name="geometry">
-           <rect>
-            <x>10</x>
-            <y>10</y>
-            <width>81</width>
-            <height>20</height>
-           </rect>
-          </property>
-          <property name="text">
-           <string>National</string>
-          </property>
-         </widget>
-         <widget class="QRadioButton" name="isAmericanRadio">
-          <property name="geometry">
-           <rect>
-            <x>10</x>
-            <y>30</y>
-            <width>81</width>
-            <height>20</height>
-           </rect>
-          </property>
-          <property name="text">
-           <string>American</string>
-          </property>
-         </widget>
-        </widget>
-        <widget class="QPushButton" name="adminAddStadiumButton">
-         <property name="geometry">
-          <rect>
-           <x>70</x>
-           <y>390</y>
-           <width>113</width>
-           <height>32</height>
-          </rect>
-         </property>
-         <property name="text">
-          <string>Add Stadium</string>
-         </property>
-        </widget>
-        <widget class="QLineEdit" name="monthLine">
-         <property name="geometry">
-          <rect>
-           <x>90</x>
-           <y>270</y>
-           <width>31</width>
-           <height>21</height>
-          </rect>
-         </property>
-         <property name="placeholderText">
-          <string>mm</string>
-         </property>
-        </widget>
-        <widget class="QLineEdit" name="dayLine">
-         <property name="geometry">
-          <rect>
-           <x>130</x>
-           <y>270</y>
-           <width>31</width>
-           <height>21</height>
-          </rect>
-         </property>
-         <property name="placeholderText">
-          <string>dd</string>
-         </property>
-        </widget>
-        <widget class="QLineEdit" name="yearLine">
-         <property name="geometry">
-          <rect>
-           <x>170</x>
-           <y>270</y>
-           <width>61</width>
-           <height>21</height>
-          </rect>
-         </property>
-         <property name="placeholderText">
-          <string>yyyy</string>
-         </property>
-        </widget>
-       </widget>
-      </widget>
-      <widget class="QWidget" name="modify_stadium_tab">
-       <attribute name="title">
-        <string>Modify</string>
-       </attribute>
-      </widget>
-      <widget class="QWidget" name="tab_3">
-       <attribute name="title">
-        <string>Souvenir</string>
-       </attribute>
-      </widget>
      </widget>
     </widget>
    </widget>
@@ -864,7 +876,7 @@
     <property name="title">
      <string>User Type</string>
     </property>
-    <widget class="QRadioButton" name="userRadio">
+    <widget class="QRadioButton" name="radioButton">
      <property name="geometry">
       <rect>
        <x>10</x>
@@ -876,11 +888,8 @@
      <property name="text">
       <string>User</string>
      </property>
-     <property name="checked">
-      <bool>true</bool>
-     </property>
     </widget>
-    <widget class="QRadioButton" name="adminRadio">
+    <widget class="QRadioButton" name="radioButton_2">
      <property name="geometry">
       <rect>
        <x>10</x>
@@ -924,7 +933,7 @@
      <x>0</x>
      <y>0</y>
      <width>985</width>
-     <height>22</height>
+     <height>20</height>
     </rect>
    </property>
   </widget>
@@ -980,56 +989,92 @@
    <slot>listSouvenir()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>175</x>
+     <x>171</x>
      <y>171</y>
     </hint>
     <hint type="destinationlabel">
      <x>288</x>
      <y>150</y>
-   <sender>adminAddStadiumButton</sender>
-   <signal>clicked()</signal>
-   <receiver>MainWindow</receiver>
-   <slot>addNewStadium()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>157</x>
-     <y>527</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>297</x>
-     <y>538</y>
     </hint>
    </hints>
   </connection>
   <connection>
-   <sender>adminRadio</sender>
+   <sender>addItemBtn</sender>
    <signal>clicked()</signal>
    <receiver>MainWindow</receiver>
-   <slot>setAdminMode()</slot>
+   <slot>addSouvenir()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>366</x>
-     <y>557</y>
+     <x>60</x>
+     <y>267</y>
     </hint>
     <hint type="destinationlabel">
-     <x>289</x>
+     <x>291</x>
+     <y>294</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>displayCartBtn</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>displayCart()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>246</x>
+     <y>550</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>288</x>
      <y>571</y>
     </hint>
    </hints>
   </connection>
   <connection>
-   <sender>userRadio</sender>
+   <sender>buyItemBtn</sender>
    <signal>clicked()</signal>
    <receiver>MainWindow</receiver>
-   <slot>setUserMode()</slot>
+   <slot>buySouvenir()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>395</x>
-     <y>532</y>
+     <x>226</x>
+     <y>171</y>
     </hint>
     <hint type="destinationlabel">
-     <x>286</x>
-     <y>521</y>
+     <x>289</x>
+     <y>180</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>removeItemBtn</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>removeSouvenir()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>166</x>
+     <y>266</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>293</x>
+     <y>261</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>modifyItemBtn</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>modifySouvenir()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>232</x>
+     <y>276</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>289</x>
+     <y>332</y>
     </hint>
    </hints>
   </connection>
@@ -1037,8 +1082,10 @@
  <slots>
   <slot>displayAllStadiums()</slot>
   <slot>listSouvenir()</slot>
-  <slot>addNewStadium()</slot>
-  <slot>setAdminMode()</slot>
-  <slot>setUserMode()</slot>
+  <slot>addSouvenir()</slot>
+  <slot>displayCart()</slot>
+  <slot>buySouvenir()</slot>
+  <slot>removeSouvenir()</slot>
+  <slot>modifySouvenir()</slot>
  </slots>
 </ui>

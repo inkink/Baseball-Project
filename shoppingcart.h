@@ -10,7 +10,6 @@ public:
     void buyItem(Souvenir item, int quantity);
     string displayCart();
 private:
-    vector<Souvenir> souvenirList;
     vector<Souvenir> purchaseList;
     vector<int> quantityList;
     double grandTotal;

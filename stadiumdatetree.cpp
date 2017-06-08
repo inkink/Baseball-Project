@@ -17,12 +17,6 @@ void StadiumDateTree::DisplayAmerican(QTableWidget *table)
     inorderHelper(table, this->root, 2);
 }
 
-void StadiumDateTree::test()
-{
-    cout << "hello" << endl;
-}
-
-
 void StadiumDateTree::inorderHelper(QTableWidget *table, TreeNode<Stadium, StadiumDateComparator> *nodePtr,int type)
 {
     if(nodePtr){
