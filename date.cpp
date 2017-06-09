@@ -1,7 +1,7 @@
 #include "date.h"
 
 /**********************************************************
- * Default Constructor: Date()
+ * Default Constructor: Date() O(1)
  * _______________________________________________________
  * Precondition:
  *  -N/A
@@ -11,7 +11,7 @@
 Date::Date(): month(0),day(0),year(0){}
 
 /**********************************************************
- * 3 Parameter Constructor: Date(int m, int d, int y)
+ * 3 Parameter Constructor: Date(int m, int d, int y) O(1)
  * _______________________________________________________
  * Precondition:
  *  -m, d, y are defined
@@ -22,7 +22,7 @@ Date::Date(): month(0),day(0),year(0){}
 Date::Date(int m, int d, int y): month(m), day(d),year(y){}
 
 /**********************************************************
- * int Date::getMonth() const
+ * int Date::getMonth() const O(1)
  * _______________________________________________________
  * Precondition:
  *  -N/A
@@ -35,7 +35,7 @@ int Date::getMonth() const
 }
 
 /**********************************************************
- * void Date::setMonth(int value)
+ * void Date::setMonth(int value) O(1)
  * _______________________________________________________
  * Precondition:
  *  -value is defined in parameter
@@ -48,7 +48,7 @@ void Date::setMonth(int value)
 }
 
 /**********************************************************
- * int Date::getDay() const
+ * int Date::getDay() const O(1)
  * _______________________________________________________
  * Precondition:
  *  -N/A
@@ -61,7 +61,7 @@ int Date::getDay() const
 }
 
 /**********************************************************
- * void Date::setDay(int value)
+ * void Date::setDay(int value) O(1)
  * _______________________________________________________
  * Precondition:
  *  -value is defined
@@ -74,7 +74,7 @@ void Date::setDay(int value)
 }
 
 /**********************************************************
- * std::string Date::getString() const
+ * std::string Date::getString() const O(1)
  * _______________________________________________________
  * Precondition:
  *  -N/A
@@ -87,7 +87,7 @@ std::string Date::getString() const
 }
 
 /**********************************************************
- * void Date::operator=(const Date &date)
+ * void Date::operator=(const Date &date) O(1)
  * _______________________________________________________
  * Precondition:
  *  -none
@@ -102,7 +102,7 @@ void Date::operator=(const Date &date)
 }
 
 /**********************************************************
- * void Date::operator==(const Date &date)
+ * void Date::operator==(const Date &date) O(1)
  * _______________________________________________________
  * Precondition:
  *  -none
@@ -117,7 +117,7 @@ bool Date::operator==(const Date& other) const{
 }
 
 /**********************************************************
- * void Date::operator!=(const Date &date)
+ * void Date::operator!=(const Date &date) O(1)
  * _______________________________________________________
  * Precondition:
  *  -none
@@ -132,7 +132,7 @@ bool Date::operator!=(const Date& other) const{
 }
 
 /**********************************************************
- * void Date::operator<(const Date &date)
+ * void Date::operator<(const Date &date) O(1)
  * _______________________________________________________
  * Precondition:
  *  -none
@@ -170,7 +170,7 @@ bool Date::operator<(const Date &other) const
 }
 
 /**********************************************************
- * void Date::operator>(const Date &date)
+ * void Date::operator>(const Date &date) O(1)
  * _______________________________________________________
  * Precondition:
  *  -none
@@ -208,7 +208,7 @@ bool Date::operator>(const Date &other) const
 }
 
 /**********************************************************
- * void Date::operator<=(const Date &date)
+ * void Date::operator<=(const Date &date) O(1)
  * _______________________________________________________
  * Precondition:
  *  -none
@@ -223,7 +223,7 @@ bool Date::operator<=(const Date& other) const{
 }
 
 /**********************************************************
- * void Date::operator>=(const Date &date)
+ * void Date::operator>=(const Date &date) O(1)
  * _______________________________________________________
  * Precondition:
  *  -none
@@ -238,7 +238,7 @@ bool Date::operator>=(const Date& other) const{
 }
 
 /**********************************************************
- * int Date::getYear() const
+ * int Date::getYear() const O(1)
  * _______________________________________________________
  * Precondition:
  *  -N/A
@@ -251,7 +251,7 @@ int Date::getYear() const
 }
 
 /**********************************************************
- * void Date::setYear(int value)
+ * void Date::setYear(int value) O(1)
  * _______________________________________________________
  * Precondition:
  *  -value is defined

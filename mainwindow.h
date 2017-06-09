@@ -22,40 +22,39 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
 public:
-    explicit MainWindow(QWidget *parent = 0);
-    void loadStadiumInfo(string filename);
-    void displayMsgBox(std::string message) const;
-    void showStartingPoints();
-    ~MainWindow();
+    explicit MainWindow(QWidget *parent = 0);       //constructor
+    void loadStadiumInfo(string filename);          //loads stadium info
+    void displayMsgBox(std::string message) const;  //displays the msg box
+    void showStartingPoints();                      //display starting point
+    ~MainWindow();                                  //destructor
 
 public slots:
-    void displayAllStadiums();
-    void listSouvenir();
-    void buySouvenir();
-    void addSouvenir();
-    void removeSouvenir();
-    void modifySouvenir();
-    void displayCart();
-    void clearTable();
-    void addNewStadium();
-    void setAdminMode();
-    void setUserMode();
-    void createNewTrip();
-    void updateVisit();
+    void displayAllStadiums();                      //display all stadium info
+    void listSouvenir();                            //lists available souvenirs
+    void buySouvenir();                             //buys souvenir
+    void addSouvenir();                             //add new souvenir to shop
+    void removeSouvenir();                          //remove souvenir from shop
+    void modifySouvenir();                          //modify souvenir info
+    void displayCart();                             //displays bought souvenirs
+    void clearTable();                              //clears table text
+    void addNewStadium();                           //add new stadium
+    void setAdminMode();                            //enables admin commands
+    void setUserMode();                             //disables admin commands
+    void createNewTrip();                           //create a user picked trip
+    void updateVisit();                             //updates stadiums visited
 
 private:
-    Ui::MainWindow *ui;
-    StadiumTree stadiums;
-    StadiumDateTree date_stadiums;
-    StadiumTeamTree team_stadiums;
-    //test for souvenir
-    Stadium current;
-    ShoppingCart cart;
-    vector<int> allTrip;
-    vector<int> nationalTrip;
-    vector<int> americanTrip;
-    int tripLength;
-    int currentTrip;
+    Ui::MainWindow *ui;                             //ui pointer
+    StadiumTree stadiums;                           //tree of stadiums sorted by stadium
+    StadiumDateTree date_stadiums;                  //tree of stadiums sorted by date
+    StadiumTeamTree team_stadiums;                  //tree of stadiums sorted by team
+    Stadium current;                                //current stadium visited
+    ShoppingCart cart;                              //cart of purchased souvenirs
+    vector<int> allTrip;                            //list of all stadiums in trip
+    vector<int> nationalTrip;                       //list of national stadiums in trip
+    vector<int> americanTrip;                       //list of american stadiums in trip
+    int tripLength;                                 //size of trip
+    int currentTrip;                                //current trip value
 
 
 };

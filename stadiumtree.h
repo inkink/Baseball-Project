@@ -10,17 +10,17 @@ class StadiumTree :
 {
 public:
 
-    void DisplayTableInOrder(QTableWidget *table);
-    void DisplayNational(QTableWidget *table);
-    void DisplayAmerican(QTableWidget *table);
-    void test();
-    void getStart(vector<Stadium>& points);
-
+    void DisplayTableInOrder(QTableWidget *table);                  //display tree in table
+    void DisplayNational(QTableWidget *table);                      //display national stadiums
+    void DisplayAmerican(QTableWidget *table);                      //display american stadiums
+    void getStart(vector<Stadium>& points);                         //get starting point
 
 private:
-    void getCAStadiums(TreeNode<Stadium,StadiumNameComparator> *nodePtr, vector<Stadium>& trip);
-    void inorderHelper(QTableWidget *table, TreeNode<Stadium, StadiumNameComparator> *nodePtr, int type);
-    void appendToTable(QTableWidget *table, Stadium stadium);
+    void getCAStadiums(TreeNode<Stadium,StadiumNameComparator>
+                       *nodePtr, vector<Stadium>& trip);            //gets california stadiums
+    void inorderHelper(QTableWidget *table, TreeNode<Stadium,
+                       StadiumNameComparator> *nodePtr, int type);  //helps keep order
+    void appendToTable(QTableWidget *table, Stadium stadium);       //add to table
 
 };
 

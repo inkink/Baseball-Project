@@ -1,20 +1,61 @@
 #include "stadiumteamtree.h"
 
+/***********************************************************
+ * FUNCTION DisplayTableInOrder O(nlogn)
+ * ________________________________________________________
+ * PRE-CONDITIONS
+ * table - table to display to
+ *
+ * POST-CONDITIONS
+ * The function will display contents in the table
+ * *******************************************************/
 void StadiumTeamTree::DisplayTableInOrder(QTableWidget *table)
 {
     inorderHelper(table, this->root, 0);
 }
 
+/***********************************************************
+ * FUNCTION DisplayNational O(nlogn)
+ * ________________________________________________________
+ * PRE-CONDITIONS
+ * table - table to display to
+ *
+ * POST-CONDITIONS
+ * The function will display national stadiums'
+ * contents in the table
+ * *******************************************************/
 void StadiumTeamTree::DisplayNational(QTableWidget *table)
 {
     inorderHelper(table, this->root, 1);
 }
 
+/***********************************************************
+ * FUNCTION DisplayAmerican O(nlogn)
+ * ________________________________________________________
+ * PRE-CONDITIONS
+ * table - table to display to
+ *
+ * POST-CONDITIONS
+ * The function will display american stadiums'
+ * contents in the table
+ * *******************************************************/
 void StadiumTeamTree::DisplayAmerican(QTableWidget *table)
 {
     inorderHelper(table, this->root, 2);
 }
 
+/***********************************************************
+ * FUNCTION inorderHelper O(nlogn)
+ * ________________________________________________________
+ * PRE-CONDITIONS
+ * table   - table to display to
+ * nodePtr - pointer to node of tree
+ * type    - type of league
+ *
+ * POST-CONDITIONS
+ * The function will display american stadiums'
+ * contents in the table
+ * *******************************************************/
 void StadiumTeamTree::inorderHelper(QTableWidget *table, TreeNode<Stadium, TeamNameComparator> *nodePtr,int type)
 {
     if(nodePtr){
@@ -29,6 +70,16 @@ void StadiumTeamTree::inorderHelper(QTableWidget *table, TreeNode<Stadium, TeamN
     }
 }
 
+/***********************************************************
+ * FUNCTION appendToTable O(1)
+ * ________________________________________________________
+ * PRE-CONDITIONS
+ * table   - table to display to
+ * stadium - stadium to append
+ *
+ * POST-CONDITIONS
+ * The function will append the stadium to the table
+ * *******************************************************/
 void StadiumTeamTree::appendToTable(QTableWidget *table, Stadium stadium)
 {
     table->setRowCount(table->rowCount()+1);

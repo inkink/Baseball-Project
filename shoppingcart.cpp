@@ -1,5 +1,15 @@
 #include "shoppingcart.h"
 
+/***********************************************************
+ * CONSTRUCTOR O(1)
+ * ________________________________________________________
+ * PRE-CONDITIONS
+ * none
+ *
+ * POST-CONDITIONS
+ * The constructor creates a shopping cart to store all
+ * of the souvenirs purchased
+ * *******************************************************/
 ShoppingCart::ShoppingCart()
 {
     purchaseList.reserve(50);
@@ -7,6 +17,16 @@ ShoppingCart::ShoppingCart()
     grandTotal = 0;
 }
 
+/***********************************************************
+ * FUNCTION buyItem O(1)
+ * ________________________________________________________
+ * PRE-CONDITIONS
+ * item     - souvenir to buy
+ * quantity - quantity to buy
+ *
+ * POST-CONDITIONS
+ * The function will return if address is in california
+ * *******************************************************/
 void ShoppingCart::buyItem(Souvenir item, int quantity)
 {
     purchaseList.push_back(item);
@@ -14,6 +34,16 @@ void ShoppingCart::buyItem(Souvenir item, int quantity)
     grandTotal += item.getPrice() * quantity;
 }
 
+/***********************************************************
+ * FUNCTION displayCart O(n)
+ * ________________________________________________________
+ * PRE-CONDITIONS
+ * none
+ *
+ * POST-CONDITIONS
+ * The function will return a string of the contents of
+ * the cart
+ * *******************************************************/
 string ShoppingCart::displayCart()
 {
     string result = "Shopping Cart:\n";

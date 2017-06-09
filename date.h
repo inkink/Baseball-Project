@@ -8,33 +8,27 @@ using namespace std;
 class Date
 {
 public:
-    Date();
-    Date(int m, int d, int y);
-
-    int getMonth() const;
-    void setMonth(int value);
-
-    int getYear() const;
-    void setYear(int value);
-
-    int getDay() const;
-    void setDay(int value);
-
-    std::string getString() const;
-
-    void operator=(const Date& date);
-    bool operator<=(const Date& other) const;
-    bool operator>=(const Date& other) const;
-    bool operator<(const Date& other) const;
-    bool operator>(const Date& other) const;
-    bool operator==(const Date& other) const;
-    bool operator!=(const Date& other) const;
-
-    friend ostream& operator <<(ostream& out, const Date& d);
+    Date();                                                     //default constructor
+    Date(int m, int d, int y);                                  //param constructor
+    int getMonth() const;                                       //return month
+    void setMonth(int value);                                   //assign new month
+    int getYear() const;                                        //return year
+    void setYear(int value);                                    //assign new year
+    int getDay() const;                                         //return day
+    void setDay(int value);                                     //assign new day
+    std::string getString() const;                              //return string form
+    void operator=(const Date& date);                           //overloaded =
+    bool operator<=(const Date& other) const;                   //overloaded <=
+    bool operator>=(const Date& other) const;                   //overloaded >=
+    bool operator<(const Date& other) const;                    //overloaded <
+    bool operator>(const Date& other) const;                    //overloaded >
+    bool operator==(const Date& other) const;                   //overloaded ==
+    bool operator!=(const Date& other) const;                   //overloaded !=
+    friend ostream& operator <<(ostream& out, const Date& d);   //overloaded <<
 private:
-    int month;
-    int day;
-    int year;
+    int month;                                                  //month num
+    int day;                                                    //day num
+    int year;                                                   //year num
 };
 
 #endif // DATE_H

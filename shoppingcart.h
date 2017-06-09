@@ -6,13 +6,13 @@
 class ShoppingCart
 {
 public:
-    ShoppingCart();
-    void buyItem(Souvenir item, int quantity);
-    string displayCart();
+    ShoppingCart();                             //constructor
+    void buyItem(Souvenir item, int quantity);  //buys item
+    string displayCart();                       //display cart info
 private:
-    vector<Souvenir> purchaseList;
-    vector<int> quantityList;
-    double grandTotal;
+    vector<Souvenir> purchaseList;              //list of items purchased
+    vector<int> quantityList;                   //list of item quantities
+    double grandTotal;                          //total cost of cart
 };
 
 #endif // SHOPPINGCART_H

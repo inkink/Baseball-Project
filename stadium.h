@@ -11,56 +11,51 @@ using namespace std;
 class Stadium
 {
 public:
-    Stadium();
+    Stadium();                                                      //constructor
     Stadium(string team, string stadium, string a, string s,
-            string phone, Date date, int cap, bool l, bool g);
-    string getTeamName();
-    string getAddress();
-    Date getOpenDate();
-    string getPhoneNum();
-    int getCapacity();
-    void setTeam(string team);
-    void setAddress(string address);
-    void setOpenDate(Date date);
-    void setPhoneNum(string num);
-    void setCapacity(int cap);
-    bool operator==(Stadium two);
-    bool operator>(Stadium two);
-    bool operator<(Stadium two);
-    bool operator>=(Stadium two);
-    bool operator<=(Stadium two);
-    friend ostream& operator<<(ostream& out, const Stadium& one);
-
-    string getState() const;
-    void setState(const string &value);
-
-    bool getLeague() const;
-    void setLeague(bool value);
-
-    bool getGrass() const;
-    void setGrass(bool value);
-
-    string getStadiumName() const;
-    void setStadiumName(const string &value);
-
-    void addSouvenir(string name, double cost);
-    void removeSouvenir(string itemName);
-    void modifySouvenir(string itemName, string name, double cost);
-    bool findSouvenir(string s);
-    Souvenir getSouvenir(string s);
-    string displaySouvenir();
+            string phone, Date date, int cap, bool l, bool g);      //param constructor
+    string getTeamName();                                           //return team name
+    string getAddress();                                            //return stadium address
+    Date getOpenDate();                                             //return date opened
+    string getPhoneNum();                                           //return phone num
+    int getCapacity();                                              //return capacity
+    void setTeam(string team);                                      //assign new team
+    void setAddress(string address);                                //assign new address
+    void setOpenDate(Date date);                                    //assign new open date
+    void setPhoneNum(string num);                                   //assign new phone num
+    void setCapacity(int cap);                                      //assign new capacity
+    bool operator==(Stadium two);                                   //overloaded==
+    bool operator>(Stadium two);                                    //overloaded>
+    bool operator<(Stadium two);                                    //overloaded<
+    bool operator>=(Stadium two);                                   //overloaded>=
+    bool operator<=(Stadium two);                                   //overloaded<=
+    friend ostream& operator<<(ostream& out, const Stadium& one);   //overloaded<<
+    string getState() const;                                        //return state
+    void setState(const string &value);                             //assign new state
+    bool getLeague() const;                                         //return league
+    void setLeague(bool value);                                     //assign new league
+    bool getGrass() const;                                          //return if grass
+    void setGrass(bool value);                                      //assign if grass
+    string getStadiumName() const;                                  //return stadium name
+    void setStadiumName(const string &value);                       //assign new stadium name
+    void addSouvenir(string name, double cost);                     //add souvenir to shop
+    void removeSouvenir(string itemName);                           //remove souvenir from shop
+    void modifySouvenir(string itemName, string name, double cost); //change souvenir info
+    bool findSouvenir(string s);                                    //check if souvenir exists
+    Souvenir getSouvenir(string s);                                 //return souvenir
+    string displaySouvenir();                                       //display souvenir info
 
 private:
-    string teamName;
-    string stadiumName;
-    string address;
-    string state;
-    Date openDate;
-    string phoneNum;
-    int capacity;
-    bool league; //national = 0 , american = 1
-    bool grass;
-    vector<Souvenir> souvenirs;
+    string teamName;                                                //team name
+    string stadiumName;                                             //stadium name
+    string address;                                                 //address
+    string state;                                                   //state located
+    Date openDate;                                                  //date opened
+    string phoneNum;                                                //phone number
+    int capacity;                                                   //max capacity
+    bool league;                                                    //national = 0 , american = 1
+    bool grass;                                                     //if grass field
+    vector<Souvenir> souvenirs;                                     //list of souvenirs
 };
 
 struct StadiumNameComparator

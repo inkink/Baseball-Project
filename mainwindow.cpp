@@ -2,20 +2,25 @@
 #include "ui_mainwindow.h"
 
 //file path for input.txt
-//string filepath = "/C:/Users/Administrator/Desktop/CS8/Project2/build-Baseball-Project-Desktop_Qt_5_7_0_MinGW_32bit-Debug/";
 string filepath = "/Users/Jason/Documents/School/Spring 2017/CS 8/Baseball Project/";
 
+/***********************************************************
+ * CONSTRUCTOR O(nlogn)
+ * ________________________________________________________
+ * PRE-CONDITIONS
+ * none
+ *
+ * POST-CONDITIONS
+ * The constructor creates the mainwindow gui for the
+ * baseball project
+ * *******************************************************/
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
-//    loadStadiumInfo("input.txt");
-//    ui->setupUi(this);
     loadStadiumInfo(filepath + "input.txt");
 
     ui->setupUi(this);
-
-    //test for souvenir
     current = stadiums.getRoot();
     //set tab, disable admin tab
     ui->tabWidget->setCurrentIndex(0);
@@ -26,14 +31,29 @@ MainWindow::MainWindow(QWidget *parent) :
     showStartingPoints();
 }
 
-//destructor
+/***********************************************************
+ * DESTRUCTOR O(1)
+ * ________________________________________________________
+ * PRE-CONDITIONS
+ * none
+ *
+ * POST-CONDITIONS
+ * The destructor frees any dynamically allocated memory
+ * *******************************************************/
 MainWindow::~MainWindow()
 {
     delete ui;
 }
 
-//load the information from the file into the
-//trees
+/***********************************************************
+ * FUNCTION loadStadiumInfo O(nlogn)
+ * ________________________________________________________
+ * PRE-CONDITIONS
+ * fileName - name of file to load from
+ *
+ * POST-CONDITIONS
+ * The function will load the stadium infos from the file
+ * *******************************************************/
 void MainWindow::loadStadiumInfo(string filename)
 {
     ifstream ifile;
@@ -98,15 +118,20 @@ void MainWindow::loadStadiumInfo(string filename)
     ifile.close();
 }
 
-//display all the stadiums on the table
+/***********************************************************
+ * FUNCTION displayAllStadiums O(nlogn)
+ * ________________________________________________________
+ * PRE-CONDITIONS
+ * none
+ *
+ * POST-CONDITIONS
+ * The function will display all the stadiums on the table
+ * *******************************************************/
 void MainWindow::displayAllStadiums()
 {
     clearTable();
 
     ui->tableWidget->setColumnCount(8);
-//    ui->tableWidget->setColumnWidth(0,150);
-//    ui->tableWidget->setColumnWidth(1,75);
-//    ui->tableWidget->setColumnWidth(5,75);
     std::string labels = "Stadium,Team,Address,Phone,Open Date,Capacity,Grass,League";
     ui->tableWidget->setHorizontalHeaderLabels(QString::fromStdString(labels).split(","));
 
@@ -154,6 +179,16 @@ void MainWindow::displayAllStadiums()
     }
 }
 
+/***********************************************************
+ * FUNCTION listSouvenir O(n)
+ * ________________________________________________________
+ * PRE-CONDITIONS
+ * none
+ *
+ * POST-CONDITIONS
+ * The function will display souvenirs onto item display
+ * widget
+ * *******************************************************/
 void MainWindow::listSouvenir()
 {
     cout << current.displaySouvenir() << endl;
@@ -161,6 +196,16 @@ void MainWindow::listSouvenir()
     ui->itemDisplay->setText(qstr);
 }
 
+/***********************************************************
+ * FUNCTION buySouvenir O(n)
+ * ________________________________________________________
+ * PRE-CONDITIONS
+ * none
+ *
+ * POST-CONDITIONS
+ * The function will purchase a souvenir and add it
+ * to the cart
+ * *******************************************************/
 void MainWindow::buySouvenir()
 {
     string itemName = ui->itemNameEdit->text().toStdString();
@@ -173,6 +218,16 @@ void MainWindow::buySouvenir()
     }
 }
 
+/***********************************************************
+ * FUNCTION addSouvenir O(1)
+ * ________________________________________________________
+ * PRE-CONDITIONS
+ * none
+ *
+ * POST-CONDITIONS
+ * The function will add the souvenir data inputted to
+ * a new souvenir to be created for the stadium
+ * *******************************************************/
 void MainWindow::addSouvenir()
 {
     string itemName = ui->newNameEdit->text().toStdString();
@@ -180,6 +235,16 @@ void MainWindow::addSouvenir()
     current.addSouvenir(itemName, itemPrice);
 }
 
+/***********************************************************
+ * FUNCTION removeSouvenir O(n)
+ * ________________________________________________________
+ * PRE-CONDITIONS
+ * none
+ *
+ * POST-CONDITIONS
+ * The function will remove a souvenir from the current
+ * stadium
+ * *******************************************************/
 void MainWindow::removeSouvenir()
 {
     string itemName = ui->itemNameEdit->text().toStdString();
@@ -189,6 +254,15 @@ void MainWindow::removeSouvenir()
     }
 }
 
+/***********************************************************
+ * FUNCTION modifySouvenir O(n)
+ * ________________________________________________________
+ * PRE-CONDITIONS
+ * none
+ *
+ * POST-CONDITIONS
+ * The function will modify a souvenir's info
+ * *******************************************************/
 void MainWindow::modifySouvenir()
 {
     string oldName = ui->itemNameEdit->text().toStdString();
@@ -200,6 +274,16 @@ void MainWindow::modifySouvenir()
     }
 }
 
+/***********************************************************
+ * FUNCTION displayCart O(n)
+ * ________________________________________________________
+ * PRE-CONDITIONS
+ * none
+ *
+ * POST-CONDITIONS
+ * The function will display the user's shopping cart to
+ * the item display widget
+ * *******************************************************/
 void MainWindow::displayCart()
 {
     cout << cart.displayCart() << endl;
@@ -209,7 +293,7 @@ void MainWindow::displayCart()
 
 
 /**********************************************************
- * void MainWindow::clearTable()
+ * void MainWindow::clearTable() O(1)
  * _______________________________________________________
  * Precondition:
  *  - nothing
@@ -240,6 +324,16 @@ void MainWindow::displayMsgBox(std::string message) const
     msgbox.exec();
 }
 
+/***********************************************************
+ * FUNCTION showStartingPoints O(n)
+ * ________________________________________________________
+ * PRE-CONDITIONS
+ * none
+ *
+ * POST-CONDITIONS
+ * The function will show all of the starting points
+ * of the graph
+ * *******************************************************/
 void MainWindow::showStartingPoints()
 {
     ui->startStadiumCombo->clear();
@@ -258,6 +352,16 @@ void MainWindow::showStartingPoints()
         ui->startStadiumCombo->addItem(QString::fromStdString(starting[i]));
 }
 
+/***********************************************************
+ * FUNCTION addNewStadium O(logn)
+ * ________________________________________________________
+ * PRE-CONDITIONS
+ * none
+ *
+ * POST-CONDITIONS
+ * The function will add a new stadium based on user input
+ * from the gui
+ * *******************************************************/
 void MainWindow::addNewStadium()
 {
     std::string temp, team, stadium, state, phone, address;
@@ -322,6 +426,15 @@ void MainWindow::addNewStadium()
                                      cap, league, grass));
 }
 
+/***********************************************************
+ * FUNCTION setAdminMode O(1)
+ * ________________________________________________________
+ * PRE-CONDITIONS
+ * none
+ *
+ * POST-CONDITIONS
+ * The function will enable admin only commands
+ * *******************************************************/
 void MainWindow::setAdminMode()
 {
     displayMsgBox("Welcome Administrator.");
@@ -331,6 +444,15 @@ void MainWindow::setAdminMode()
     ui->removeItemBtn->setEnabled(true);
 }
 
+/***********************************************************
+ * FUNCTION setUserMode O(1)
+ * ________________________________________________________
+ * PRE-CONDITIONS
+ * none
+ *
+ * POST-CONDITIONS
+ * The function will disable admin only commands
+ * *******************************************************/
 void MainWindow::setUserMode()
 {
     displayMsgBox("Welcome User.");
@@ -341,6 +463,15 @@ void MainWindow::setUserMode()
     ui->removeItemBtn->setEnabled(false);
 }
 
+/***********************************************************
+ * FUNCTION createNewTrip O(n)
+ * ________________________________________________________
+ * PRE-CONDITIONS
+ * none
+ *
+ * POST-CONDITIONS
+ * The function will create a new trip to be planned
+ * *******************************************************/
 void MainWindow::createNewTrip()
 {
     vector<string> stadiums {"SafeCo Field","AT&T Park","Dodger Stadium","PETCO Park",
@@ -419,6 +550,16 @@ void MainWindow::createNewTrip()
         }
 }
 
+/***********************************************************
+ * FUNCTION updateVisit O(n)
+ * ________________________________________________________
+ * PRE-CONDITIONS
+ * none
+ *
+ * POST-CONDITIONS
+ * The function will update what starting points to use
+ * according to league
+ * *******************************************************/
 void MainWindow::updateVisit()
 {
     showStartingPoints();

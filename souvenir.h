@@ -6,20 +6,18 @@ using namespace std;
 class Souvenir
 {
 public:
-    Souvenir(string source, string Name="", double cost=0);
-    string getItem();
-    double getPrice();
-    string getOriginName();
-
-    void setItem(string n);
-    void setPrice(double p);
-
-    bool operator==(Souvenir& other) const;
+    Souvenir(string source, string Name="", double cost=0); //constructor
+    string getItem();                                       //returns item name
+    double getPrice();                                      //returns item cost
+    string getOriginName();                                 //returns item origin
+    void setItem(string n);                                 //assign new name
+    void setPrice(double p);                                //assign new price
+    bool operator==(Souvenir& other) const;                 //overloaded==
 
 private:
-    string item;
-    double price;
-    string origin;
+    string item;                                            //item name
+    double price;                                           //item price
+    string origin;                                          //stadium of origin
 };
 
 #endif // SOUVENIR_H

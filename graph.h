@@ -7,49 +7,40 @@ using namespace std;
 class graph
 {
 public:
-    graph();
-    graph(int **m, int ver);
-
-    //big 3 not tested yet
-    ~graph();
-    graph(graph& other);
-    graph& operator=(graph& other);
-
-    int shortestPath(int start, int end);  //return the distance
-    int findShortestForAllB(int start, vector<int> &trip);    //return the distance
-
-
-
+    graph();                                                //default constructor
+    graph(int **m, int ver);                                //param constructor
+    ~graph();                                               //destructor
+    graph(graph& other);                                    //copy constructor
+    graph& operator=(graph& other);                         //overloaded =
+    int shortestPath(int start, int end);                   //return the distance
+    int findShortestForAllB(int start, vector<int> &trip);  //return the distance
 private:
-    int** matrix; //if no path, the distance is 0
-    int V;
-    int** distance;//distance between every 2 nodes
-    int** path;//[i][j] is the parent of j in the path of i to j
-
-    void FloydWarshall();
-
-    void printPathInFW(int i, int j);//recurison
+    int** matrix;                                           //if no path, the distance is 0
+    int V;                                                  //version
+    int** distance;                                         //distance between every 2 nodes
+    int** path;                                             //[i][j] is the parent of j in the path of i to j
+    void FloydWarshall();                                   //algorithm
+    void printPathInFW(int i, int j);                       //prints path
 
     struct node{
         int index;
         bool isTheEnd=true;
         int dist;
-        bool indexReached[25];//temp 25
-        node* children[5]={NULL,NULL,NULL,NULL,NULL};//temp 5
+        bool indexReached[25];
+        node* children[5]={NULL,NULL,NULL,NULL,NULL};
         node* pre;
         node (node* par,int i, int d){
             pre=par;
             index=i;
             if(pre){//pre exist
-                //dist = matrix[pre->index][i]+pre->dist;
                 dist = d+pre->dist;
-                for(int t=0;t<25;t++)//temp
+                for(int t=0;t<25;t++)
                     indexReached[t]=pre->indexReached[t];
                 indexReached[i]=true;
             }
             else{// it is a root
                 dist=0;
-                for(int t=0;t<25;t++)//temp 25
+                for(int t=0;t<25;t++)
                    indexReached[t]=false;
                 indexReached[i]=true;
             }
@@ -60,10 +51,10 @@ private:
         }
     };
     //recursion
-    void spinTree(node* n);
-    void findDest(node* headptr, node* &target, int& min);//re
-    void printPath(node* tar);
-    void loadPath(node* tar, vector<int> &trip);
+    void spinTree(node* n);                                 //finds connections to nodes
+    void findDest(node* headptr, node* &target, int& min);  //finds correct destination
+    void printPath(node* tar);                              //prints path of node
+    void loadPath(node* tar, vector<int> &trip);            //load path to graph
 };
 
 #endif // GRAPH_H
