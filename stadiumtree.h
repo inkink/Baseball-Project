@@ -14,8 +14,11 @@ public:
     void DisplayNational(QTableWidget *table);
     void DisplayAmerican(QTableWidget *table);
     void test();
+    void getStart(vector<Stadium>& points);
+
 
 private:
+    void getCAStadiums(TreeNode<Stadium,StadiumNameComparator> *nodePtr, vector<Stadium>& trip);
     void inorderHelper(QTableWidget *table, TreeNode<Stadium, StadiumNameComparator> *nodePtr, int type);
     void appendToTable(QTableWidget *table, Stadium stadium);
 

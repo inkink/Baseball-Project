@@ -11,12 +11,19 @@ MainWindow::MainWindow(QWidget *parent) :
 {
 //    loadStadiumInfo("input.txt");
 //    ui->setupUi(this);
+    loadStadiumInfo(filepath + "input.txt");
+
+    ui->setupUi(this);
+
     //test for souvenir
     current = stadiums.getRoot();
-    loadStadiumInfo(filepath + "input.txt");
-    ui->setupUi(this);
+    //set tab, disable admin tab
     ui->tabWidget->setCurrentIndex(0);
     ui->tabWidget->setTabEnabled(3,false);
+    ui->addItemBtn->setEnabled(false);
+    ui->modifyItemBtn->setEnabled(false);
+    ui->removeItemBtn->setEnabled(false);
+    showStartingPoints();
 }
 
 //destructor
@@ -26,7 +33,7 @@ MainWindow::~MainWindow()
 }
 
 //load the information from the file into the
-//stadium tree
+//trees
 void MainWindow::loadStadiumInfo(string filename)
 {
     ifstream ifile;
@@ -84,14 +91,12 @@ void MainWindow::loadStadiumInfo(string filename)
                                     cap, league, grass));
             team_stadiums.insertNode(Stadium(team, stadium, address, state, phone, Date(month,day,year),
                                     cap, league, grass));
-
             getline(ifile,temp);
         }
     }
     ifile.clear();
     ifile.close();
 }
-
 
 //display all the stadiums on the table
 void MainWindow::displayAllStadiums()
@@ -147,8 +152,6 @@ void MainWindow::displayAllStadiums()
             ui->tableTitleLabel->setText("List of American Stadium Information by Date");
             }
     }
-
-    ui->tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
 }
 
 void MainWindow::listSouvenir()
@@ -157,6 +160,53 @@ void MainWindow::listSouvenir()
     QString qstr = QString::fromStdString(current.displaySouvenir());
     ui->itemDisplay->setText(qstr);
 }
+
+void MainWindow::buySouvenir()
+{
+    string itemName = ui->itemNameEdit->text().toStdString();
+    int itemQuantity = ui->itemQuantityEdit->text().toInt();
+    if(current.findSouvenir(itemName))
+    {
+        Souvenir temp = current.getSouvenir(itemName);
+        cout << temp.getItem() << " " << temp.getOriginName() << " " << temp.getPrice() << endl;
+        cart.buyItem(temp, itemQuantity);
+    }
+}
+
+void MainWindow::addSouvenir()
+{
+    string itemName = ui->newNameEdit->text().toStdString();
+    double itemPrice = ui->newPriceEdit->text().toDouble();
+    current.addSouvenir(itemName, itemPrice);
+}
+
+void MainWindow::removeSouvenir()
+{
+    string itemName = ui->itemNameEdit->text().toStdString();
+    if(current.findSouvenir(itemName))
+    {
+        current.removeSouvenir(itemName);
+    }
+}
+
+void MainWindow::modifySouvenir()
+{
+    string oldName = ui->itemNameEdit->text().toStdString();
+    if(current.findSouvenir(oldName))
+    {
+        string newName = ui->newNameEdit->text().toStdString();
+        double newCost = ui->newPriceEdit->text().toDouble();
+        current.modifySouvenir(oldName, newName, newCost);
+    }
+}
+
+void MainWindow::displayCart()
+{
+    cout << cart.displayCart() << endl;
+    QString qstr = QString::fromStdString(cart.displayCart());
+    ui->itemDisplay->setText(qstr);
+}
+
 
 /**********************************************************
  * void MainWindow::clearTable()
@@ -173,6 +223,39 @@ void MainWindow::clearTable()
     ui->tableWidget->setRowCount(0);
     ui->tableWidget->setColumnCount(0);
     ui->tableTitleLabel->clear();
+}
+
+/**********************************************************
+ * void MainWindow::displayMsgBox(std::string message) const
+ * _______________________________________________________
+ * Precondition:
+ *  - none
+ * Postcondition:
+ *  - displays a message box with message
+**********************************************************/
+void MainWindow::displayMsgBox(std::string message) const
+{
+    QMessageBox msgbox;
+    msgbox.setText(QString::fromStdString(message));
+    msgbox.exec();
+}
+
+void MainWindow::showStartingPoints()
+{
+    ui->startStadiumCombo->clear();
+    vector<std::string> starting;
+    if (ui->tripAllRadio->isChecked()){
+        starting = {"AT&T Park", "O.co Coliseum",
+                                    "Dodger Stadium","Angels Stadium of Anaheim", "PETCO Park"};}
+    else if (ui->tripAmericanRadio->isChecked()){
+        starting = {"O.co Coliseum","Angels Stadium of Anaheim"};
+    }
+    else{
+        starting = {"AT&T Park", "Dodger Stadium", "PETCO Park"};
+    }
+
+    for (int i = 0; i < starting.size(); i++)
+        ui->startStadiumCombo->addItem(QString::fromStdString(starting[i]));
 }
 
 void MainWindow::addNewStadium()
@@ -243,6 +326,9 @@ void MainWindow::setAdminMode()
 {
     displayMsgBox("Welcome Administrator.");
     ui->tabWidget->setTabEnabled(3,true);
+    ui->addItemBtn->setEnabled(true);
+    ui->modifyItemBtn->setEnabled(true);
+    ui->removeItemBtn->setEnabled(true);
 }
 
 void MainWindow::setUserMode()
@@ -250,19 +336,91 @@ void MainWindow::setUserMode()
     displayMsgBox("Welcome User.");
     ui->tabWidget->setCurrentIndex(0);
     ui->tabWidget->setTabEnabled(3,false);
+    ui->addItemBtn->setEnabled(false);
+    ui->modifyItemBtn->setEnabled(false);
+    ui->removeItemBtn->setEnabled(false);
 }
 
-/**********************************************************
- * void MainWindow::displayMsgBox(std::string message) const
- * _______________________________________________________
- * Precondition:
- *  - none
- * Postcondition:
- *  - displays a message box with message
-**********************************************************/
-void MainWindow::displayMsgBox(std::string message) const
+void MainWindow::createNewTrip()
 {
-    QMessageBox msgbox;
-    msgbox.setText(QString::fromStdString(message));
-    msgbox.exec();
+    vector<string> stadiums {"SafeCo Field","AT&T Park","Dodger Stadium","PETCO Park",
+                     "Chase Field","Coer's Field","Rangers Ballpark",
+                     "Minute Maid Park", "Kauffman Stadium", "Busch Stadium",
+                     "Target Field", "Miller Park", "Wrigley Field",
+                     "Comerica Park", "Progressive Field", "Great America Ball Park",
+                     "PNC Park", "Rogers Center", "Fenway Park", "Yankee Stadium",
+                     "Citizens Bank", "Nationals Park", "Turner Field",
+                     "Tropicano Field", "Marlin's Park"};
+    vector<string> all_stadiums = {"SafeCo Field", "AT&T Park", "O.co Coliseum",
+                     "Dodger Stadium", "Angels Stadium of Anaheim", "PETCO Park",
+                     "Chase Field","Coer's Field","Rangers Ballpark",
+                     "Minute Maid Park", "Kauffman Stadium", "Busch Stadium",
+                     "Target Field", "Miller Park", "Wrigley Field",
+                     "Comerica Park", "Progressive Field", "Great American Ball Park",
+                     "PNC Park", "Rogers Center", "Fenway Park", "Yankee Stadium",
+                    "Citi Field","Citizens Bank",
+                     "Nationals Park","Oriole Park at Camden Yards",
+                        "Turner Field", "Tropicano Field", "Marlin's Park"};
+    if (ui->startStadiumCombo->currentIndex() != -1)
+        if (ui->autoTripButton->isChecked()){
+            string start = ui->startStadiumCombo->currentText().toStdString();
+            if (ui->tripAllRadio->isChecked()){
+                const int v = 25;
+                int** grapha=new int* [v];
+                int** walker= grapha;
+                for(int i=0;i<v;i++){
+                    *walker=new int[v];
+                    walker++;
+                }
+                int graphb[v][v]={{0,680,0,0,0,0,0,0,0,0,1390,0,0,0,0,0,0,2070,0,0,0,0,0,0,0},
+                                               {680,0,340,0,650,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+                                               {0,340,0,110,0,0,0,0,0,0,1500,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+                                               {0,0,110,0,400,830,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+                                               {0,650,0,400,0,580,870,1115,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+                                               {0,0,0,830,580,0,650,0,560,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+                                               {0,0,0,0,870,650,0,230,460,0,0,0,0,0,0,0,0,0,0,0,0,0,740,0,0},
+                                               {0,0,0,0,1115,0,230,0,0,680,0,0,0,0,0,0,0,0,0,0,0,0,0,790,965},
+                                               {0,0,0,0,0,560,460,0,0,235,0,0,415,0,0,0,0,0,0,0,0,0,0,0,0},
+                                               {0,0,0,0,0,0,0,680,235,0,465,0,0,0,0,310,0,0,0,0,0,0,0,0,0},
+                                               {1390,0,1500,0,0,0,0,0,0,465,0,300,0,0,0,0,0,0,0,0,0,0,0,0,0},
+                                               {0,0,0,0,0,0,0,0,0,0,300,0,80,0,0,0,0,430,0,0,0,0,0,0,0},
+                                               {0,0,0,0,0,0,0,0,415,0,0,80,0,240,0,250,0,0,0,0,0,0,0,0,0},
+                                               {0,0,0,0,0,0,0,0,0,0,0,0,240,0,90,0,0,430,0,0,0,0,0,0,0},
+                                               {0,0,0,0,0,0,0,0,0,0,0,0,0,90,0,225,115,0,0,0,0,0,0,0,0},
+                                               {0,0,0,0,0,0,0,0,0,310,0,0,250,0,225,0,260,0,0,0,0,0,375,790,0},
+                                               {0,0,0,0,0,0,0,0,0,0,0,0,0,0,115,260,0,225,315,0,0,90,0,0,0},
+                                               {2070,0,0,0,0,0,0,0,0,0,0,430,0,430,0,0,225,0,430,0,0,0,0,0,0},
+                                               {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,315,430,0,195,0,0,0,0,1255},
+                                               {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,195,0,80,0,0,0,0},
+                                               {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,80,0,90,0,0,0},
+                                               {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,90,0,0,0,90,0,560,0,930},
+                                               {0,0,0,0,0,0,740,0,0,0,0,0,0,0,0,375,0,0,0,0,0,560,0,0,600},
+                                               {0,0,0,0,0,0,0,790,0,0,0,0,0,0,0,790,0,0,0,0,0,0,0,0,210},
+                                               {0,0,0,0,0,0,0,965,0,0,0,0,0,0,0,0,0,0,1255,0,0,930,600,210,0}};
+                for(int i=0;i<v;i++){
+                    for(int j=0;j<v;j++)
+                        grapha[i][j]=graphb[i][j];
+                }
+                graph test(grapha,25);
+                std::vector<int> trip;
+                tripLength = test.findShortestForAllB(5,trip);
+                clearTable();
+                allTrip.clear();
+                ui->tableWidget->setColumnCount(1);
+                for (int i = 0; i < trip.size(); i++){
+                    ui->tableWidget->setRowCount(ui->tableWidget->rowCount()+1);
+                    ui->tableWidget->setItem(i,0,new QTableWidgetItem( QString::fromStdString(all_stadiums[trip[i]])));
+                }
+                ui->tripLengthLabel->setText(QString::number(tripLength));
+            }
+        }
+        else{
+
+        }
 }
+
+void MainWindow::updateVisit()
+{
+    showStartingPoints();
+}
+

@@ -22,6 +22,22 @@ void StadiumTree::test()
     cout << "hello" << endl;
 }
 
+void StadiumTree::getStart(vector<Stadium> &points)
+{
+    getCAStadiums(root,points);
+}
+
+void StadiumTree::getCAStadiums(TreeNode<Stadium,StadiumNameComparator> *nodePtr, vector<Stadium> &trip)
+{
+    if (nodePtr){
+        getCAStadiums(nodePtr->left,trip);
+        if (nodePtr->value.getState() == "CA"){
+            trip.push_back(nodePtr->value);
+        }
+        getCAStadiums(nodePtr->right, trip);
+    }
+}
+
 
 void StadiumTree::inorderHelper(QTableWidget *table, TreeNode<Stadium, StadiumNameComparator> *nodePtr,int type)
 {
@@ -61,6 +77,5 @@ void StadiumTree::appendToTable(QTableWidget *table, Stadium stadium)
     else
         table->setItem(n,7,new QTableWidgetItem("National"));
 }
-
 
 

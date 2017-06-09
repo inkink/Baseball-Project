@@ -2,7 +2,6 @@
 
 ShoppingCart::ShoppingCart()
 {
-    souvenirList.reserve(50);
     purchaseList.reserve(50);
     quantityList.reserve(50);
     grandTotal = 0;
@@ -21,9 +20,10 @@ string ShoppingCart::displayCart()
     string temp;
     for(int i=0; i<purchaseList.size(); i++)
     {
-        result += purchaseList[i].getItem()
-                + "\t" + to_string(quantityList[i])
-                + "\t" + purchaseList[i].getOriginName() + "\n";
+        result += "- " + purchaseList[i].getItem()
+                + ",   " + to_string(purchaseList[i].getPrice())
+                + ",   " + to_string(quantityList[i])
+                + ",   " + purchaseList[i].getOriginName() + "\n";
     }
     result += "\nGrand Total: " + to_string(grandTotal);
     return result;

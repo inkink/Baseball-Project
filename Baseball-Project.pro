@@ -21,7 +21,8 @@ SOURCES += main.cpp\
     shoppingcart.cpp \
     stadiumdatetree.cpp \
     stadiumteamtree.cpp \
-    stadiumtree.cpp
+    stadiumtree.cpp \
+    graph.cpp
 
 HEADERS  += mainwindow.h \
     date.h \
@@ -30,10 +31,10 @@ HEADERS  += mainwindow.h \
     souvenir.h \
     stadium.h \
     shoppingcart.h \
-    stadiumdatecomparator.h \
     stadiumdatetree.h \
     stadiumteamtree.h \
-    stadiumtree.h
+    stadiumtree.h \
+    graph.h
 
 FORMS    += mainwindow.ui
 

@@ -4,7 +4,6 @@
 #include <algorithm>
 #include "iostream"
 #include "date.h"
-#include "address.h"
 #include "souvenir.h"
 using namespace std;
 
@@ -47,6 +46,8 @@ public:
     void addSouvenir(string name, double cost);
     void removeSouvenir(string itemName);
     void modifySouvenir(string itemName, string name, double cost);
+    bool findSouvenir(string s);
+    Souvenir getSouvenir(string s);
     string displaySouvenir();
 
 private:
