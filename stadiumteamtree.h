@@ -8,13 +8,14 @@ class StadiumTeamTree :
         public BinaryTree<Stadium, TeamNameComparator>
 {
 public:
-    void DisplayTableInOrder(QTableWidget *table);
-    void DisplayNational(QTableWidget *table);
-    void DisplayAmerican(QTableWidget *table);
+    void DisplayTableInOrder(QTableWidget *table);              //display tree in table
+    void DisplayNational(QTableWidget *table);                  //display national stadiums
+    void DisplayAmerican(QTableWidget *table);                  //display american stadiums
 
 private:
-    void inorderHelper(QTableWidget *table, TreeNode<Stadium, TeamNameComparator> *nodePtr, int type);
-    void appendToTable(QTableWidget *table, Stadium stadium);
+    void inorderHelper(QTableWidget *table, TreeNode<Stadium,
+                       TeamNameComparator> *nodePtr, int type); //helps keep order
+    void appendToTable(QTableWidget *table, Stadium stadium);   //add to table
 
 };
 

@@ -3,10 +3,29 @@
 
 using namespace std;
 
+/***********************************************************
+ * CONSTRUCTOR O(1)
+ * ________________________________________________________
+ * PRE-CONDITIONS
+ * none
+ *
+ * POST-CONDITIONS
+ * The constructor creates an empty graph
+ * *******************************************************/
 graph::graph()
 {
 }
 
+/***********************************************************
+ * CONSTRUCTOR O(n^2)
+ * ________________________________________________________
+ * PRE-CONDITIONS
+ * m   - matrix value
+ * ver - version number
+ *
+ * POST-CONDITIONS
+ * The constructor creates a graph
+ * *******************************************************/
 graph::graph(int **m, int ver){
     V=ver;
     matrix = new int*[ver];
@@ -20,6 +39,15 @@ graph::graph(int **m, int ver){
     FloydWarshall();
 }
 
+/***********************************************************
+ * DESTRUCTOR O(n)
+ * ________________________________________________________
+ * PRE-CONDITIONS
+ * none
+ *
+ * POST-CONDITIONS
+ * The destructor frees any dynamically allocated memory
+ * *******************************************************/
 graph::~graph(){
     int** walker=matrix;
     for(int i=0;i<V;i++){
@@ -42,6 +70,16 @@ graph::~graph(){
     V=0;
 }
 
+/***********************************************************
+ * COPY CONSTRUCTOR O(n^2)
+ * ________________________________________________________
+ * PRE-CONDITIONS
+ * other - other graph to copy
+ *
+ * POST-CONDITIONS
+ * The function will create a graph using another graph's
+ * info
+ * *******************************************************/
 graph::graph(graph& other){
     V=other.V;
     matrix = new int*[V];
@@ -54,6 +92,16 @@ graph::graph(graph& other){
     }
 }
 
+/***********************************************************
+ * FUNCTION operator= O(n^2)
+ * ________________________________________________________
+ * PRE-CONDITIONS
+ * other - other graph to copy from
+ *
+ * POST-CONDITIONS
+ * The function will assign this graph's info to other's
+ * graph's info
+ * *******************************************************/
 graph& graph::operator=(graph& other){
     int** walker=matrix;
     for(int i=0;i<V;i++){
@@ -73,11 +121,32 @@ graph& graph::operator=(graph& other){
     return other;
 }
 
+/***********************************************************
+ * FUNCTION shortestPath O(1)
+ * ________________________________________________________
+ * PRE-CONDITIONS
+ * start - starting point
+ * end   - end point
+ *
+ * POST-CONDITIONS
+ * The function will find the shortest path from start
+ * to end
+ * *******************************************************/
 int graph::shortestPath(int start, int end){
     printPathInFW(start,end);
     return distance[start][end];
 }
 
+/***********************************************************
+ * FUNCTION FloydWarshall O(n^2)
+ * ________________________________________________________
+ * PRE-CONDITIONS
+ * none
+ *
+ * POST-CONDITIONS
+ * The function will use the floyd warshall algorithm
+ * to find the shortest path
+ * *******************************************************/
 void graph::FloydWarshall(){
     //init
     path=new int*[V];
@@ -122,24 +191,18 @@ void graph::FloydWarshall(){
             }
         }
     }
-    //output
-//    cout<<"*** Raw Data ***"<<endl;
-//    cout<<"distance:"<<endl;
-//    for(int i=0;i<V;i++){
-//        for(int j=0;j<V;j++){
-//            cout<<setw(5)<<distance[i][j];
-//        }
-//        cout<<endl;
-//    }
-//    cout<<"path:"<<endl;
-//    for(int i=0;i<V;i++){
-//        for(int j=0;j<V;j++){
-//            cout<<setw(4)<<path[i][j];
-//        }
-//        cout<<endl;
-//    }
 }
 
+/***********************************************************
+ * FUNCTION printPathInFW O(1)
+ * ________________________________________________________
+ * PRE-CONDITIONS
+ * i - from 0 to V(which is the number of vertices)
+ * j - from 0 to V(which is the number of vertices)
+ *
+ * POST-CONDITIONS
+ * The function will print the path according to the path matrix
+ * *******************************************************/
 void graph::printPathInFW(int i, int j){
     if(path[i][j]!=-1){
         printPathInFW(i,path[i][j]);
@@ -147,7 +210,16 @@ void graph::printPathInFW(int i, int j){
     }
 }
 
-//
+/***********************************************************
+ * FUNCTION findShortestForAllB O(n)
+ * ________________________________________________________
+ * PRE-CONDITIONS
+ * start - starting int point
+ * trip  - list of ints of the trip
+ *
+ * POST-CONDITIONS
+ * The function will
+ * *******************************************************/
 int graph::findShortestForAllB(int start, vector<int>&trip){
     node* root;
     root=new node(NULL,start,0);
@@ -161,6 +233,18 @@ int graph::findShortestForAllB(int start, vector<int>&trip){
     return minD;
 }
 
+/***********************************************************
+ * FUNCTION findDest O(n)
+ * ________________________________________________________
+ * PRE-CONDITIONS
+ * headptr - is a pointer of a node
+ * target  - output (pass by reference)
+ * min     - output (pass by reference)
+ *
+ * POST-CONDITIONS
+ * The function will find the shortest completed path from the tree
+ * Since it is recrusion, the output would be pass by refernce
+ * *******************************************************/
 void graph::findDest(node* headptr,node* &target, int& min){
     if(headptr->isTheEnd){
         if(headptr->dist < min){
@@ -175,6 +259,15 @@ void graph::findDest(node* headptr,node* &target, int& min){
     }
 }
 
+/***********************************************************
+ * FUNCTION spinTree O(n^2)
+ * ________________________________________________________
+ * PRE-CONDITIONS
+ * n -  the tree would spin with  the root as n
+ *
+ * POST-CONDITIONS
+ * The function will find all the possible path from n and record the total distance
+ * *******************************************************/
 void graph::spinTree(node* n){
     //put every reachable and unreached node as child
     for(int i=0;i<V;i++){
@@ -192,12 +285,31 @@ void graph::spinTree(node* n){
     }
 }
 
+/***********************************************************
+ * FUNCTION printPath O(n)
+ * ________________________________________________________
+ * PRE-CONDITIONS
+ * tar - target node
+ *
+ * POST-CONDITIONS
+ * The function will
+ * *******************************************************/
 void graph::printPath(node* tar){
     if(tar->pre)
         printPath(tar->pre);
     cout<<tar->index<<' ';
 }
 
+/***********************************************************
+ * FUNCTION loadPath O(n)
+ * ________________________________________________________
+ * PRE-CONDITIONS
+ * tar  - target node
+ * trip - list of ints of trip points
+ *
+ * POST-CONDITIONS
+ * The function will
+ * *******************************************************/
 void graph::loadPath(node* tar, vector<int> &trip)
 {
     if(tar->pre)

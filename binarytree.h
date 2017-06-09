@@ -8,40 +8,38 @@ using namespace std;
 template<class item, class C>
 struct TreeNode
 {
-    item value;
-    TreeNode<item, C> *left;
-    TreeNode<item, C> *right;
+    item value;                                             //holds value
+    TreeNode<item, C> *left;                                //pointer to left
+    TreeNode<item, C> *right;                               //pointer to right
 };
 
 template<class item, class C>
 class BinaryTree
 {
 public:
-    BinaryTree(){ root = NULL;}
-
-    ~BinaryTree(){destroySubTree(root);}
+    BinaryTree(){ root = NULL;}                             //default constructor
+    ~BinaryTree(){destroySubTree(root);}                    //destructor
     //Binary Tree Operations
-    void insertNode(item);
-    bool searchNode(item);
-    bool searchNode(int num, item &person);
-    void remove(item);
-    int size() const{return size(root);}
-    item& getRoot();
-
-    void displayInOrder() const{ displayInOrder(root);}
-    void displayPreOrder() const{ displayPreOrder(root);}
-    void displayPostOrder() const{ displayPostOrder(root);}
+    void insertNode(item);                                  //insert new node
+    bool searchNode(item);                                  //check if node exists
+    bool searchNode(int num, item &person);                 //check if node exists
+    void remove(item);                                      //remove node
+    int size() const{return size(root);}                    //return size of tree
+    item& getRoot();                                        //return pointer to root
+    void displayInOrder() const{ displayInOrder(root);}     //display inorder
+    void displayPreOrder() const{ displayPreOrder(root);}   //display preorder
+    void displayPostOrder() const{ displayPostOrder(root);} //display postorder
 protected:
-    TreeNode<item, C>* root;
+    TreeNode<item, C>* root;                                //pointer to root
 private:
-    void insert(TreeNode<item, C> *&, TreeNode<item, C> *&);
-    void destroySubTree(TreeNode<item, C> *);
-    void deleteNode(item, TreeNode<item, C> *&);
-    void makeDeletion(TreeNode<item, C> *&);
-    void displayInOrder(TreeNode<item, C> *) const;
-    void displayPreOrder(TreeNode<item, C> *) const;
-    void displayPostOrder(TreeNode<item, C> *) const;
-    int size(TreeNode<item, C> *) const;
+    void insert(TreeNode<item, C> *&, TreeNode<item, C> *&);//insert to tree
+    void destroySubTree(TreeNode<item, C> *);               //display for destructor
+    void deleteNode(item, TreeNode<item, C> *&);            //delete a node
+    void makeDeletion(TreeNode<item, C> *&);                //helper for delete
+    void displayInOrder(TreeNode<item, C> *) const;         //display inorder
+    void displayPreOrder(TreeNode<item, C> *) const;        //display preorder
+    void displayPostOrder(TreeNode<item, C> *) const;       //display postorder
+    int size(TreeNode<item, C> *) const;                    //return size of tree
 };
 
 template<class item, class C>

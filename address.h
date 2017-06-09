@@ -7,31 +7,25 @@ using namespace std;
 class Address
 {
 public:
-    Address();
-    Address(std::string a, std::string c, std::string s, int z);
-
-    bool is_cal() const;
-
-    std::string getAddress() const;
-    void setAddress(const std::string &value);
-
-    std::string getCity() const;
-    void setCity(const std::string &value);
-
-    std::string getState() const;
-    void setState(const std::string &value);
-
-    int getZip() const;
-    void setZip(int value);
-
-    void operator=(const Address& a);
-    friend ostream& operator <<(ostream& out, const Address& d);
+    Address();                                                  //default constructor
+    Address(std::string a, std::string c, std::string s, int z);//param constructor
+    bool is_cal() const;                                        //check if CA
+    std::string getAddress() const;                             //return address
+    void setAddress(const std::string &value);                  //assign new address
+    std::string getCity() const;                                //return city
+    void setCity(const std::string &value);                     //assign new city
+    std::string getState() const;                               //return state
+    void setState(const std::string &value);                    //assign new state
+    int getZip() const;                                         //return zip
+    void setZip(int value);                                     //assign new zip
+    void operator=(const Address& a);                           //overloaded equality
+    friend ostream& operator <<(ostream& out, const Address& d);//overloaded output
 
 private:
-    std::string address;
-    std::string city;
-    std::string state;
-    int zip;
+    std::string address;                                        //holds address
+    std::string city;                                           //holds city
+    std::string state;                                          //holds state
+    int zip;                                                    //holds zipcode
 
 };
 
