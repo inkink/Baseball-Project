@@ -17,9 +17,30 @@ void StadiumTree::DisplayAmerican(QTableWidget *table)
     inorderHelper(table, this->root, 2);
 }
 
+void StadiumTree::DisplayGrass(QTableWidget *table)
+{
+    inorderHelper(table, this->root, 3);
+}
+
 void StadiumTree::test()
 {
     cout << "hello" << endl;
+}
+
+void StadiumTree::getStart(vector<Stadium> &points)
+{
+    getCAStadiums(root,points);
+}
+
+void StadiumTree::getCAStadiums(TreeNode<Stadium,StadiumNameComparator> *nodePtr, vector<Stadium> &trip)
+{
+    if (nodePtr){
+        getCAStadiums(nodePtr->left,trip);
+        if (nodePtr->value.getState() == "CA"){
+            trip.push_back(nodePtr->value);
+        }
+        getCAStadiums(nodePtr->right, trip);
+    }
 }
 
 
@@ -31,8 +52,11 @@ void StadiumTree::inorderHelper(QTableWidget *table, TreeNode<Stadium, StadiumNa
             appendToTable(table, nodePtr->value);
         else if (type == 2 && nodePtr->value.getLeague())
             appendToTable(table,nodePtr->value);
+        else if (type == 3 && nodePtr->value.getGrass())
+            appendToTable(table,nodePtr->value);
         else if (type == 0)
             appendToTable(table, nodePtr->value);
+
         inorderHelper(table,nodePtr->right, type);
     }
 }
@@ -61,5 +85,23 @@ void StadiumTree::appendToTable(QTableWidget *table, Stadium stadium)
     else
         table->setItem(n,7,new QTableWidgetItem("National"));
 }
+
+Stadium StadiumTree::getStadium
+(string stadium)
+{
+    return getStadiumHelper(stadium, root);
+}
+
+Stadium StadiumTree::getStadiumHelper(string stadium, TreeNode<Stadium, StadiumNameComparator> *nodePtr)
+{
+    if (stadium < nodePtr->value.getStadiumName()){
+        return getStadiumHelper(stadium,nodePtr->left);
+    }
+    else if (stadium == nodePtr->value.getStadiumName())
+        return nodePtr->value;
+    else
+        return getStadiumHelper(stadium,nodePtr->right);
+}
+
 
 

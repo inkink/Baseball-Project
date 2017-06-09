@@ -1,9 +1,9 @@
 #include "souvenir.h"
 
-Souvenir::Souvenir(string Name, double cost,int num){
+Souvenir::Souvenir(string source, string Name, double cost){
     item = Name;
     price = cost;
-    quantity = num;
+    origin = source;
 }
 
 string Souvenir::getItem(){
@@ -14,8 +14,8 @@ double Souvenir::getPrice(){
     return price;
 }
 
-int Souvenir::getQuantity(){
-    return quantity;
+string Souvenir::getOriginName(){
+    return origin;
 }
 
 void Souvenir::setItem(string n){
@@ -26,6 +26,7 @@ void Souvenir::setPrice(double p){
     price = p;
 }
 
-void Souvenir::setQuantity(int n){
-    quantity = n;
+bool Souvenir::operator==(Souvenir& other) const
+{
+    return other.getItem() == item;
 }

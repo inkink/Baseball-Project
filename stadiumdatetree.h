@@ -13,7 +13,7 @@ public:
     void DisplayTableInOrder(QTableWidget *table);
     void DisplayNational(QTableWidget *table);
     void DisplayAmerican(QTableWidget *table);
-    void test();
+    void DisplayGrass (QTableWidget *table);
 
 private:
     void inorderHelper(QTableWidget *table, TreeNode<Stadium, StadiumDateComparator> *nodePtr, int type);

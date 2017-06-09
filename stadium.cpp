@@ -1,17 +1,17 @@
 #include "stadium.h"
 
-Stadium::Stadium()
+Stadium::Stadium(string name)
 {
     openDate = Date();
     teamName = "none";
-    stadiumName = "none";
+    stadiumName = name;
     state = "na";
     phoneNum = "000-000-0000";
     address = "none";
     capacity =0;
     league = 0;
     grass = 0;
-
+    souvenirs.reserve(50);
 }
 Stadium::Stadium(string team, string stadium, string a, string s,
                  string phone, Date date, int cap, bool l, bool g){
@@ -22,8 +22,13 @@ Stadium::Stadium(string team, string stadium, string a, string s,
     phoneNum = phone;
     capacity =cap;
     grass = g;
-    league = l;
     state = s;
+    league = l;
+    souvenirs.reserve(50);
+    addSouvenir("Baseball cap", 25.99);
+    addSouvenir("Baseball bat", 35.35);
+    addSouvenir("Team pennant", 12.99);
+    addSouvenir("Autographed baseball", 19.99);
 }
 
 string Stadium::getTeamName(){
@@ -121,6 +126,73 @@ string Stadium::getStadiumName() const
 void Stadium::setStadiumName(const string &value)
 {
     stadiumName = value;
+}
+
+void Stadium::addSouvenir(string name, double cost)
+{
+    Souvenir newItem(stadiumName, name, cost);
+    souvenirs.push_back(newItem);
+}
+
+void Stadium::removeSouvenir(string itemName)
+{
+//    Souvenir temp(stadiumName, itemName, 0);
+//    vector<Souvenir>::iterator p = find(souvenirs.begin(), souvenirs.end(), itemName);
+//    if(p != souvenirs.end())
+//    {
+////        souvenirs.erase(p);
+//    }
+    for(int i=0; i<souvenirs.size(); i++)
+    {
+        if(souvenirs[i].getItem() == itemName)
+        {
+            souvenirs.erase(souvenirs.begin()+i);
+        }
+    }
+}
+
+void Stadium::modifySouvenir(string itemName, string name, double cost)
+{
+    for(int i=0; i<souvenirs.size(); i++)
+    {
+        if(souvenirs[i].getItem() == itemName)
+        {
+            souvenirs[i].setItem(name);
+            souvenirs[i].setPrice(cost);
+        }
+    }
+}
+
+bool Stadium::findSouvenir(string s)
+{
+    for(int i=0; i<souvenirs.size(); i++)
+    {
+        if(souvenirs[i].getItem() == s)
+            return true;
+    }
+    return false;
+}
+
+Souvenir Stadium::getSouvenir(string s)
+{
+    for(int i=0; i<souvenirs.size(); i++)
+    {
+        if(souvenirs[i].getItem() == s)
+            return souvenirs[i];
+    }
+    return souvenirs[0];
+}
+
+string Stadium::displaySouvenir()
+{
+    string result = "";
+    for(int i=0; i<souvenirs.size(); i++)
+    {
+        result += "- " + souvenirs[i].getOriginName() + ", "
+                + souvenirs[i].getItem() + ", $"
+                + std::to_string(souvenirs[i].getPrice()) + "\n";
+    }
+    return result;
 }
 
 ostream& operator<<(ostream& out, const Stadium& one){

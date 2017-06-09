@@ -6,8 +6,11 @@
 #include "binarytree.h"
 #include "stadiumtree.h"
 #include "stadiumdatetree.h"
+#include "stadiumteamtree.h"
+#include "shoppingcart.h"
 #include <fstream>
 #include <QMessageBox>
+#include <graph.h>
 
 
 namespace Ui {
@@ -21,18 +24,45 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = 0);
     void loadStadiumInfo(string filename);
-    void loadDateStadiumInfo(string filename);
     void displayMsgBox(std::string message) const;
+    void showStartingPoints();
     ~MainWindow();
 
 public slots:
     void displayAllStadiums();
+    void listSouvenir();
+    void buySouvenir();
+    void addSouvenir();
+    void removeSouvenir();
+    void modifySouvenir();
+    void displayCart();
     void clearTable();
+    void addNewStadium();
+    void setAdminMode();
+    void setUserMode();
+    void createNewTrip();
+    void updateVisit();
+    void addToTrip();
+    void updateCurrent();
+    void getShortestPath();
 
 private:
     Ui::MainWindow *ui;
     StadiumTree stadiums;
     StadiumDateTree date_stadiums;
+    StadiumTeamTree team_stadiums;
+    //test for souvenir
+    Stadium current;
+    ShoppingCart cart;
+    vector<int> allTrip;
+    vector<int> nationalTrip;
+    vector<int> americanTrip;
+    int tripLength;
+    int currentTrip;
+    int prevIndex;
+    int currentIndex;
+    vector<string> all_stadiums;
+
 
 };
 

@@ -27,6 +27,7 @@ public:
     void remove(item);
     int size() const{return size(root);}
     item& getRoot();
+    item& getnth(int index, int i = 0);
 
     void displayInOrder() const{ displayInOrder(root);}
     void displayPreOrder() const{ displayPreOrder(root);}
@@ -42,6 +43,7 @@ private:
     void displayPreOrder(TreeNode<item, C> *) const;
     void displayPostOrder(TreeNode<item, C> *) const;
     int size(TreeNode<item, C> *) const;
+
 };
 
 template<class item, class C>
@@ -189,12 +191,13 @@ int BinaryTree<item, C>::size(TreeNode<item, C> *node) const
         return 0;
     else
         return 1 + size(node->left) + size(node->right);
-
-
 }
+
 
 template<class item, class C>
 item& BinaryTree<item, C>::getRoot(){
     return root->value;
 }
+
+
 #endif // BINARYTREE_H

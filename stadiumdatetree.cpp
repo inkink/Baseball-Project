@@ -17,11 +17,10 @@ void StadiumDateTree::DisplayAmerican(QTableWidget *table)
     inorderHelper(table, this->root, 2);
 }
 
-void StadiumDateTree::test()
+void StadiumDateTree::DisplayGrass(QTableWidget *table)
 {
-    cout << "hello" << endl;
+    inorderHelper(table, this->root, 3);
 }
-
 
 void StadiumDateTree::inorderHelper(QTableWidget *table, TreeNode<Stadium, StadiumDateComparator> *nodePtr,int type)
 {
@@ -30,6 +29,8 @@ void StadiumDateTree::inorderHelper(QTableWidget *table, TreeNode<Stadium, Stadi
         if (type == 1 && !nodePtr->value.getLeague())
             appendToTable(table, nodePtr->value);
         else if (type == 2 && nodePtr->value.getLeague())
+            appendToTable(table,nodePtr->value);
+        else if (type == 3 && nodePtr->value.getGrass())
             appendToTable(table,nodePtr->value);
         else if (type == 0)
             appendToTable(table, nodePtr->value);

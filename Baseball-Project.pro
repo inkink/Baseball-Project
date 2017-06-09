@@ -18,8 +18,11 @@ SOURCES += main.cpp\
     address.cpp \
     souvenir.cpp \
     stadium.cpp \
+    shoppingcart.cpp \
+    stadiumdatetree.cpp \
+    stadiumteamtree.cpp \
     stadiumtree.cpp \
-    stadiumdatetree.cpp
+    graph.cpp
 
 HEADERS  += mainwindow.h \
     date.h \
@@ -27,11 +30,14 @@ HEADERS  += mainwindow.h \
     binarytree.h \
     souvenir.h \
     stadium.h \
-    stadiumdatecomparator.h \
+    shoppingcart.h \
+    stadiumdatetree.h \
+    stadiumteamtree.h \
     stadiumtree.h \
-    stadiumdatetree.h
+    graph.h
 
 FORMS    += mainwindow.ui
 
 DISTFILES += \
-    README.md
+    README.md \
+    input.txt

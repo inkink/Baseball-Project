@@ -1,25 +1,25 @@
 #ifndef SOUVENIR_H
 #define SOUVENIR_H
-#include "iostream"
+#include <iostream>
 using namespace std;
 
 class Souvenir
 {
 public:
-//    Souvenir();
-    Souvenir(string Name="", double cost=0,int num=0);
+    Souvenir(string source, string Name="", double cost=0);
     string getItem();
     double getPrice();
-    int getQuantity();
+    string getOriginName();
 
     void setItem(string n);
     void setPrice(double p);
-    void setQuantity(int n);
+
+    bool operator==(Souvenir& other) const;
 
 private:
     string item;
     double price;
-    int quantity;
+    string origin;
 };
 
 #endif // SOUVENIR_H
